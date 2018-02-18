@@ -1,0 +1,17 @@
+/*
+ * Configuration du serveur
+ */
+define([
+],
+function (
+) {
+	var ServerConfig = function () {
+		this.local = true; // Si les requête se font en local ou vers le serveur web.
+		this.localhost = 'http://localhost/sokoban/';
+		this.webhost = 'sokonyan.delfisakura.com';
+		this.host = this.local ? this.localhost : this.webhost;
+	}
+
+
+	return new ServerConfig();
+});

@@ -1,0 +1,39 @@
+{ "height":9,
+ "layers":[
+        {
+         "data":[17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 1, 1, 1, 1, 1, 1, 1, 17, 17, 1, 17, 1, 1, 1, 1, 1, 17, 17, 1, 17, 17, 17, 17, 17, 1, 17, 17, 1, 17, 1, 72, 72, 72, 1, 17, 17, 1, 1, 1, 26, 26, 26, 1, 17, 17, 1, 13, 1, 1, 1, 1, 1, 17, 17, 1, 1, 1, 1, 1, 26, 1, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17],
+         "height":9,
+         "name":"Calque de Tile 1",
+         "opacity":1,
+         "type":"tilelayer",
+         "visible":true,
+         "width":9,
+         "x":0,
+         "y":0
+        }],
+ "orientation":"orthogonal",
+ "properties":
+    {
+
+    },
+ "tileheight":16,
+ "tilesets":[
+        {
+         "firstgid":1,
+         "image":"..\/img\/sprite\/game\/tiles.png",
+         "imageheight":256,
+         "imagewidth":256,
+         "margin":0,
+         "name":"tiles",
+         "properties":
+            {
+
+            },
+         "spacing":0,
+         "tileheight":16,
+         "tilewidth":16
+        }],
+ "tilewidth":16,
+ "version":1,
+ "width":9
+}

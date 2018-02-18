@@ -1,0 +1,58 @@
+/**
+ * Css de la page du menu
+ */
+.menuBackground {
+	position: absolute;
+	height: 640px;
+	width: 1136px;
+	background-image: url(../assets/img/sprite/ui/menuScreen/Background.png);
+}
+
+.buttonMenu {
+    position: absolute;
+    text-align: center;
+    font-family:Fipps, sans-serif;
+    font-size: 1.2em;
+    left: 390px;
+    top: 160px;
+    height: 84px;
+    width: 331px;
+    cursor:pointer;
+}
+
+#HighscoreBtn {
+    left: 390px;
+    top: 250px;
+    cursor: pointer;
+}
+
+#OptionsBtn {
+    left: 390px;
+    top: 340px;
+    cursor: pointer;
+}
+
+#HelpBtn {
+    left: 390px;
+    top: 430px;
+    cursor: pointer;
+}
+
+#AboutBtn {
+    left: 390px;
+    top: 520px;
+    cursor: pointer;
+}
+
+.menuInfo {
+    position: absolute;
+    font-family: Fipps, sans-serif;
+    font-size: 0.7em;
+    top : 135px;
+    left : 770px;
+    line-height: 22px;
+}
+
+#unlockInfo {
+    top : 190px;
+}

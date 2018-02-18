@@ -1,0 +1,21 @@
+/**
+ * Joueur
+ */
+define([
+	"src/utils/math/Vector2"
+],
+function (
+	Vector2
+) {
+	var Player = function () {
+		this.position = new Vector2(0, 0);
+	}
+
+
+	Player.prototype.update = function () {
+
+	}
+
+
+	return new Player();
+});

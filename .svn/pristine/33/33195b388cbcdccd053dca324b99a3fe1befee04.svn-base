@@ -1,0 +1,108 @@
+/**
+ * Joueur
+ */
+define([
+	"jquery",
+	"src/utils/Config",
+	"src/utils/debug/Debug",
+	"src/utils/assetsmanager/SpriteManager",
+	"src/utils/math/Vector2",
+	"src/game/game/MapManager"
+],
+function (
+	$,
+	Config,
+	Debug,
+	SpriteManager,
+	Vector2,
+	MapManager
+) {
+	var Player = function () {
+
+	}
+
+
+	Player.prototype.init = function () {
+		var position = this.getPlayerPos();
+		this.xOffset = -18;
+		this.yOffset = 6;
+
+		$("#mapContainer").append("<div id='player'></div>")
+		$("#player").css("background-image", "url(" + SpriteManager.get("player").src + ")")
+					.css("left", this.xOffset + Config.mapWidth * position.x)
+					.css("top", this.yOffset + Config.mapHeight * position.y)
+					.css("width", 141 * Math.max(Config.mapWidth, Config.mapHeight) / 110)
+					.css("height", 87 * Math.max(Config.mapWidth, Config.mapHeight) / 110);
+		toast = 0
+		//$('#player').css({transform: 'scale(-1, 1)'});
+		// setInterval(function () {
+		// 	toast += 90;
+		// 	$('#player').css({transform: 'rotate(' + toast + 'deg)'});
+		// }, 3000)
+		//$("#player").hide();
+		this.move("left");
+	}
+
+
+	Player.prototype.update = function () {
+		var position = this.getPlayerPos();
+		if (MapManager.currentMap.length > 0) {
+			$("#player").fadeIn( Config.fadeInMin + Math.random() * (Config.fadeInMax - Config.fadeInMin) );
+			$("#player").css("left", this.xOffset + Config.mapWidth * position.x)
+						.css("top", this.yOffset + Config.mapHeight * position.y);
+		} else {
+			$("#player").fadeOut( Config.fadeInMin + Math.random() * (Config.fadeInMax - Config.fadeInMin) );
+		}
+	}
+
+
+	/**
+	 * Récupère la position du joueur
+	 * Return Vector2 position x et y
+	 */
+	Player.prototype.getPlayerPos = function () {
+		var currentMap = MapManager.currentMap;
+		for (var i = 0; i < currentMap.length; i++) {
+			if (currentMap[i] == 13) {
+				return new Vector2((i % Config.mapSizeX), Math.floor(i / Config.mapSizeY));
+			}
+		}
+		return new Vector2(0, 0);
+	}
+
+
+	/**
+	 * Fait bouger le joueur dans la direction donné.
+	 * @dir Direction, "left", "right", "up", "down" accepté.
+	 */
+	Player.prototype.move = function (dir) {
+		var position = this.getPlayerPos();
+		var currentMap = MapManager.currentMap;
+		switch(dir){
+			case "left":
+			var cellValue = MapManager.getCellValue(position.x - 1, position.y);
+				if (cellValue == 1) {
+					var temp = currentMap[MapManager.getCellId(position.x, position.y)]
+					currentMap[MapManager.getCellId(position.x, position.y)] = currentMap[MapManager.getCellId(position.x - 1, position.y)]
+					currentMap[MapManager.getCellId(position.x - 1, position.y)] = temp;
+				}
+				break;
+			case "right":
+				
+				break;
+			case "up":
+				
+				break;
+			case "down":
+				
+				break;
+			default:
+				console.error("Mauvaise direction ! Accepté : left, right, up, down. Entré : " + dir)
+				break;
+		}
+	}
+	
+
+
+	return new Player();
+});

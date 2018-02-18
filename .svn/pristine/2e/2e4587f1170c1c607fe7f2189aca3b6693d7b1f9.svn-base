@@ -1,0 +1,23 @@
+/**
+ * Ecran de chargement du jeu
+ */
+define([
+],
+function (
+) {
+	var LoadScreen = function () {
+
+	}
+
+
+	/**
+	 * Affiche le contenu dans gameContainer
+	 */
+	LoadScreen.prototype.init = function () {
+		$("#gameContainer").append("<div class='loadingBackground'></div>");
+		$("#gameContainer").append("<div class='loadingBar'></div>");
+	}
+
+
+	return new LoadScreen();
+});

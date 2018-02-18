@@ -1,0 +1,43 @@
+body {
+	background-color: white;
+}
+
+
+/**
+ * Polices
+ */
+@font-face {
+	font-family: 'Fipps';
+	src: url('font/Fipps.otf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+}
+
+#gameContainer {
+	position: absolute;
+	background-color: #014479;
+	top : 0px;
+	left : 0px;
+}
+
+.blackScreen {
+	position: absolute;
+	left: 0px;
+	top: 0px;
+	width: 100%;
+	height: 100%;
+	opacity: 0.8;
+	z-index: 2;
+	background-color: #000000;
+}
+
+.popUp {
+    position: absolute;
+    font-family: Fipps, sans-serif;
+    font-size: 1.2em;
+    width: 1124px;
+    height: 635px;
+    z-index: 3;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}

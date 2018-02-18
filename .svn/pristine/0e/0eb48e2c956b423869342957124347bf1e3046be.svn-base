@@ -1,0 +1,133 @@
+/**
+ * Ecran du jeu
+ */
+define([
+	"src/utils/assetsmanager/SpriteManager",
+	"src/utils/assetsmanager/SoundManager",
+	"src/utils/localization/txt",
+	"src/game/game/MapManager"
+],
+function (
+	SpriteManager,
+	SoundManager,
+	txt,
+	MapManager
+) {
+	var GameStage = function () {
+
+	}
+
+
+	GameStage.prototype.init = function (UIManager) {
+		$("#screenContainer").append("<div id='GameStage'></div>");
+		$("#screenContainer").css("position","absolute");
+
+
+		//Background
+		$("#GameStage").css("background-image", "url(" + SpriteManager.get("GameStageBackground").src + ")")
+					  	.css("width", 1136)
+					 	.css("height", 640)
+					  	.css("background-size","100% 100%");
+
+		/**
+		 * hudSpecial
+		 * - Title
+		 * - Logos
+		 */
+		$("#GameStage").append("<div id='hudSpecialText'>" + txt.get("LABEL_HUD_CAPACITE_TITLE") + "</div>");
+
+		//unconsumedSpecial = Nombre de special (#TODO: à changer en fonction du niveau)
+		var unconsumedSpecial = 3;
+
+		$("#GameStage").append("<div id='hudSpecialContainer'></div>")
+
+		for (var i = 0; i < unconsumedSpecial; i++) {
+			$("#hudSpecialContainer").append("<div class='hudSpecialLogo' id='specialLogo" + i + "'></div>");
+			var hudSpecialOffset = 50 + 60 * i;
+			$("#specialLogo" + i).css("left", hudSpecialOffset)
+								 .css("background-image", "url(" + SpriteManager.get("hudSpecialLogo").src + ")");
+		};
+
+
+		/**
+		 * hudTime
+		 * #TODO: faire correspondre la seconde actuelle avec ce qui est dans la div avec l'id "hudTimeText"
+		 */
+		$("#GameStage").append("<div id='hudTimeText'>0s</div>");
+
+		/**
+		 * hudActions
+		 * #TODO: faire correspondre les Actions avec le réel nombre d'action id = "hudActionNumberText"
+		 */
+		$("#GameStage").append("<div id='hudActionContainer'></div>")
+		$("#hudActionContainer").append("<div id='hudActionTitleText'>" + txt.get("LABEL_HUD_ACTION_TITLE") + "</div>");
+		$("#hudActionContainer").append("<div id='hudActionNumberText'>0</div>");
+
+
+		/**
+		 * Partie droite
+		 * m
+		 */
+			var buttonList = ["MenuBtn", "OptionsBtn", "HelpBtn", "ResetBtn", "UndoBtn", "RedoBtn"];
+		var buttonNameList = ["LABEL_MENU_MENUBTN", "LABEL_MENU_OPTIONSBTN", "LABEL_MENU_HELPBTN", "LABEL_MENU_RESETBTN", "LABEL_MENU_UNDOBTN", "LABEL_MENU_REDOBTN"];
+
+		$("#GameStage").append("<div id='menuContainer'></div>");
+
+		for (var i = 0; i < buttonList.length; i++) {
+			// Append
+			$("#menuContainer").append("<div id='" + buttonList[i] + "' class='buttonMenu'>" + txt.get(buttonNameList[i]) + "</div>");
+			$("#menuContainer #" + buttonList[i]).hide();
+			setTimeout((function (id) {
+				return function () {
+					$("#menuContainer #" + buttonList[id]).show("scale");
+					setTimeout(function () {
+						if (typeof $("#Options").html() == "undefined") SoundManager.play("buttonBlopEffect");
+					}, 300);
+				}
+			})(i), i * 100)
+
+			$("#menuContainer #" + buttonList[i]).css("background-image", "url(" + SpriteManager.get("buttonMenuStatic").src + ")");
+			$("#menuContainer #" + buttonList[i]).css("background-repeat", "no-repeat");
+
+			// Hover
+			$("#menuContainer #" + buttonList[i]).hover((function(id) {
+				return function () {
+					$( this ).css("background-image", "url(" + SpriteManager.get("buttonMenuSurvol").src + ")");
+					SoundManager.play("buttonHover");
+				}
+			})(i), function() {
+				$( this ).css("background-image", "url(" + SpriteManager.get("buttonMenuStatic").src + ")");
+			});
+
+			// Active
+			$("#menuContainer #" + buttonList[i]).mousedown((function(id) {
+				return function () {
+					$("#menuContainer #" + buttonList[id]).css("background-image", "url(" + SpriteManager.get("buttonMenuPress").src + ")");
+					$("#menuContainer #" + buttonList[id]).css("padding-top", 6);
+				}
+			})(i));
+
+			$("#menuContainer #" + buttonList[i]).mouseup((function(id) {
+				return function () {
+					$("#menuContainer #" + buttonList[id]).css("background-image", "url(" + SpriteManager.get("buttonMenuStatic").src + ")");
+					$("#menuContainer #" + buttonList[id]).css("padding-top", 0);
+					if (buttonList[id] == "MenuBtn") {
+						UIManager.closeScreen("GameStage", false);
+						MapManager.removeMap();
+					}
+					if (buttonList[id] == "ResetBtn") {
+						MapManager.removeMap();
+						//#TODO: Réaliser l'ajout de la map actuel à nouveau.
+					}
+					else {
+						UIManager.addScreen(buttonList[id].substr(0, buttonList[id].length - 3), true);
+						SoundManager.play("meow14");
+					}
+				}
+			})(i));
+		};
+	}
+
+
+	return new GameStage();
+});

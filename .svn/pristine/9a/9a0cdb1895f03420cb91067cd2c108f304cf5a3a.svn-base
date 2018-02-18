@@ -1,0 +1,14 @@
+/**
+ * Tout ce qui concerne le jeu
+ */
+#player {
+	position: absolute;
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+.tile {
+	position: absolute;
+	background-repeat: no-repeat;
+	background-size: cover;
+}

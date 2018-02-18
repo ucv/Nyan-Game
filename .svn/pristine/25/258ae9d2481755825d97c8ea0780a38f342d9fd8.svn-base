@@ -1,0 +1,40 @@
+/**
+ * Ecran d'Help
+ */
+ define([
+	"src/utils/assetsmanager/SpriteManager",
+	"src/utils/assetsmanager/SoundManager",
+	"src/utils/localization/txt",
+	"src/game/server/Account"
+],
+function (
+	SpriteManager,
+	SoundManager,
+	txt,
+	Account
+) {
+	var Help = function () {
+
+	}
+
+
+	/**
+	 * Affiche le contenu dans gameContainer
+	 */
+	Help.prototype.init = function (UIManager) {
+		SoundManager.play("nyan_elevator", true);
+
+		$("#screenContainer").append("<div id='Help'></div>");
+		$("#Help").append("<div id='helpBackground'></div>");
+		$("#helpBackground").css("background-image", "url(" + SpriteManager.get("helpBackground").src + ")")
+		$("#Help").append("<div class='helpTitleText' id='helpTitle2'>" + txt.get("LABEL_HELP_TITLE_SIMPLE_RULES") + "</div>");
+		$(".helpTitleText #helpTitle1").css("left","100px")
+									   .css("top","20px");
+		$("#Help").append("<div class='helpTitleText' id='helpTitle1'>" + "LABLABLA" + "</div>");
+		$(".helpTitleText #helpTitle2").css("left","500px")
+									   .css("top","20px");
+	}
+
+
+	return new Help();
+});

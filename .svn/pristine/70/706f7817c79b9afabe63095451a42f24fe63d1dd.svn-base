@@ -1,0 +1,9 @@
+/**
+ * Css de la page du menu
+ */
+.menuBackground {
+	position: absolute;
+	height: 640px;
+	width: 1136px;
+	background-image: url(../assets/img/sprite/ui/menuBackground.png);
+}

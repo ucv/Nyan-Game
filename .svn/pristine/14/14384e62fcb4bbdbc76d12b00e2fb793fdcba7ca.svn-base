@@ -1,0 +1,31 @@
+/**
+ * Class qui gère le undo / redo du jeu
+ */
+define([
+],
+function (
+) {
+	var Undoredo = function () {
+
+	}
+
+	/**
+	 * Ajoute la fonction undo redo
+	 */
+	Undoredo.prototype.add = function (Object) {
+		Object.actionHistory = {
+			index: 0,
+			list: []
+		};
+
+		Object.prototype.undo = function () {
+			
+		}
+
+		Object.prototype.redo = function () {
+			
+		}
+	}
+
+	return new Undoredo();
+});

@@ -1,0 +1,101 @@
+/**
+ * CSS of login page
+ */
+.topDescription {
+	font-family:Fipps, sans-serif;
+	font-size: 1.3em;
+	position: absolute;
+	left: 465px;
+	top: 160px;
+	text-shadow: 1px 1px 2px #bbb;
+}
+
+.botDescription {
+	font-family:Fipps, sans-serif;
+	font-size: 1em;
+	position: absolute;
+	left: 140px;
+	top: 530px;
+	text-shadow: 1px 1px 1px #bbb;
+}
+
+.loginBackground {
+	position: absolute;
+	height: 640px;
+	width: 1136px;
+	background-image: url(../assets/img/sprite/ui/loginScreen/Background.png);
+}
+
+
+.textBoxLogin {
+	position: absolute;
+	left: 415px;
+	top: 250px;
+	text-align:center;
+	font-family:Fipps, sans-serif;
+	font-size: 0.7em;
+
+	background: #F1F1F1 url(../assets/img/sprite/ui/loginScreen/iconeLogin.png) no-repeat;
+    background-position: 5px 3px !important;
+    padding: 10px 10px 10px 25px;
+    width: 300px;
+    border: 1px solid #CCC;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    -moz-box-shadow: 0 1px 1px #ccc inset, 0 1px 0 #fff;
+    -webkit-box-shadow: 0 1px 1px #CCC inset, 0 1px 0 #FFF;
+    box-shadow: 0 1px 1px #CCC inset, 0 1px 0 #FFF;
+}
+
+.textBoxLogin:focus {
+    background-color: #FFF;
+    border-color: #E8C291;
+    outline: none;
+    -moz-box-shadow: 0 0 0 1px #e8c291 inset;
+    -webkit-box-shadow: 0 0 0 1px #E8C291 inset;
+    box-shadow: 0 0 0 1px #E8C291 inset;
+}
+
+.textBoxPassword {
+	position: absolute;
+	left: 415px;
+	top: 335px;
+	text-align:center;
+	font-family:Fipps, sans-serif;
+	font-size: 0.8em;
+
+	background: #F1F1F1 url(../assets/img/sprite/ui/loginScreen/iconeLogin.png) no-repeat;
+    background-position: 5px -48px !important;
+    padding: 10px 10px 10px 25px;
+    width: 300px;
+    border: 1px solid #CCC;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    -moz-box-shadow: 0 1px 1px #ccc inset, 0 1px 0 #fff;
+    -webkit-box-shadow: 0 1px 1px #CCC inset, 0 1px 0 #FFF;
+    box-shadow: 0 1px 1px #CCC inset, 0 1px 0 #FFF;
+}
+
+.textBoxPassword:focus {
+    background-color: #FFF;
+    border-color: #E8C291;
+    outline: none;
+    -moz-box-shadow: 0 0 0 1px #e8c291 inset;
+    -webkit-box-shadow: 0 0 0 1px #E8C291 inset;
+    box-shadow: 0 0 0 1px #E8C291 inset;
+}
+
+.buttonConnection {
+    position: absolute;
+    text-align: center;
+    font-family:Fipps, sans-serif;
+    font-size: 0.9em;
+    left: 460px;
+    top: 430px;
+    height: 74px;
+    width: 206px;
+    cursor:pointer;
+    padding-top: 8px;
+}

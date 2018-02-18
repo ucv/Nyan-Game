@@ -1,0 +1,33 @@
+/**
+ * Css de Help
+ */
+#Help {
+	position: absolute;
+    width: 1136px;
+    height: 640px;
+}
+
+
+#helpBackground {
+	position: absolute;
+    width: 1136px;
+    height: 640px;
+    background-size: 100%100%;
+}
+
+.helpLittleText {
+	font-size: 1em;
+}
+
+.helpBigText {
+	font-size: 1.3em;
+}
+
+.helpLittleText, .helpBigTExt {
+	font-family:Fipps, sans-serif;
+}
+
+#helpTitle1, #helpTitle2 {
+	font-family:Fipps, sans-serif;
+	position: absolute;
+}

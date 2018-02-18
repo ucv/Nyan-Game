@@ -1,0 +1,53 @@
+/*
+ * Gère les differents écrans de jeu (Menu, loadScreen, GameStage)
+ */
+define([
+	"src/utils/Config",
+	"src/game/ui/LoadScreen",
+	"src/game/ui/Login",
+	"src/game/ui/Menu"
+],
+function (
+	Config,
+	LoadScreen,
+	Login,
+	Menu
+) {
+	var UIManager = function () {
+		this.currentScreen = [];
+	}
+
+
+	/**
+	 * Ajoute un nouveau contenu d'écran dans le gameContainer
+	 */
+	UIManager.prototype.addScreen = function (name) {
+		eval(name).init();
+		this.currentScreen.push(name);
+	}
+
+
+	/**
+	 * Vide le gameContainer.
+	 */
+	UIManager.prototype.closeScreen = function (name, fondu) {
+		if (typeof fondu == "undefined") fondu = false;
+
+		if (typeof name == "undefined") {
+			$("#gameContainer").html("");
+			this.currentScreen = [];
+		} else {
+			this.currentScreen.splice(this.currentScreen.indexOf(name), 1);
+			if (fondu) {
+				$("#" + name).fadeOut(Config.changeScreenFadeDelay, function () {
+					$("#" + name).remove();
+				})
+			} else {
+				$("#" + name).remove();
+			}
+		}
+	}
+
+
+	return new UIManager();
+});

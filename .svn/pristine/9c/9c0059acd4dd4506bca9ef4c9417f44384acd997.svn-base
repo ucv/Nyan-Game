@@ -1,0 +1,42 @@
+/**
+ * Joueur
+ */
+define([
+	"jquery",
+	"src/utils/debug/Debug",
+	"src/utils/assetsmanager/SpriteManager",
+	"src/utils/math/Vector2"
+],
+function (
+	$,
+	Debug,
+	SpriteManager,
+	Vector2
+) {
+	var Player = function () {
+		
+	}
+
+
+	Player.prototype.init = function () {
+		Debug.success("Player initialised.");
+
+		this.position = new Vector2(0, 0);
+
+		$("#gameContainer").append("<div id='player'></div>")
+		$("#player").css("background-image", "url(" + SpriteManager.get("player").src + ")")
+					.css("left", this.position.x)
+					.css("top", this.position.y)
+					.css("width", 100)
+					.css("height", 100);
+		$("#player").hide();
+	}
+
+
+	Player.prototype.update = function () {
+
+	}
+
+
+	return new Player();
+});

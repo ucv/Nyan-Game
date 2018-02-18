@@ -1,0 +1,57 @@
+/**
+ * Class About
+ */
+define([
+	"src/utils/assetsmanager/SpriteManager",
+	"src/utils/assetsmanager/SoundManager"
+],
+function (
+	SpriteManager,
+	SoundManager
+) {
+	var About = function () {
+
+	}
+
+
+	/**
+	 * Affiche le contenu dans popUp
+	 */
+	About.prototype.init = function (UIManager) {
+		$("#screenContainer").append("<div id='AboutScreen' class='popUp'></div>");
+
+		$("#screenContainer #AboutScreen").css("background-image", "url(" + SpriteManager.get("popUp").src + ")");
+		$("#screenContainer #AboutScreen").css( "background-size", "70%" );
+		$("#screenContainer #AboutScreen").css( "left", "170" );
+		$("#screenContainer #AboutScreen").css( "top", "160" );
+
+		$("#AboutScreen").append("<div class='buttonClose'>Close</div>");
+		$("#AboutScreen .buttonClose").css("background-image", "url(" + SpriteManager.get("buttonLoginStatic").src + ")");
+		$( "#AboutScreen .buttonClose").hover(function() {
+			$( this ).css("background-image", "url(" + SpriteManager.get("buttonLoginSurvol").src + ")");
+			$("#AboutScreen .buttonClose").css("background-repeat", "no-repeat");
+			SoundManager.play("buttonHover");
+		}, function() {
+			$( this ).css("background-image", "url(" + SpriteManager.get("buttonLoginStatic").src + ")");
+		});
+
+		$( "#AboutScreen .buttonClose").mousedown(function() {
+			$("#AboutScreen .buttonClose").css("background-image", "url(" + SpriteManager.get("buttonLoginPress").src + ")");
+			$("#AboutScreen .buttonClose").css("padding-top", 12);
+		});
+
+		$("#AboutScreen .buttonClose").mouseup(function() {
+			$("#AboutScreen .buttonClose").css("background-image", "url(" + SpriteManager.get("buttonLoginStatic").src + ")");
+			$("#AboutScreen .buttonClose").css("padding-top", 8);
+			SoundManager.play("meow14");
+
+			// CODE DE RETOUR AU MENU
+			UIManager.closeScreen("About", true);
+		});
+
+		$("#screenContainer #AboutScreen").append("<div class='title'>About</div>");
+		$("#screenContainer #AboutScreen").append("<div class='descTitle'>SokoNyan</div>");
+		$("#screenContainer #AboutScreen").append("<div class='desc'>SokoNyan has been released by<br>MILLIERE Dorian<br> &<br> PEREIRA-RAMOS Jordan<br>both student in Game Desgin & Programming<br> at ISART Digital</div>");
+	}
+	return new About();
+});

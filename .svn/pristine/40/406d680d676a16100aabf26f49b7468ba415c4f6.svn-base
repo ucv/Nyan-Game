@@ -1,0 +1,37 @@
+/**
+ * Ecran de chargement du jeu
+ */
+define([
+	"src/utils/assetsmanager/SpriteManager",
+	"src/utils/assetsmanager/SoundManager",
+	"src/utils/localization/txt"
+],
+function (
+	SpriteManager,
+	SoundManager,
+	txt
+) {
+	var LoadScreen = function () {
+
+	}
+
+
+	/**
+	 * Affiche le contenu dans gameContainer
+	 */
+	LoadScreen.prototype.init = function (UIManager) {
+		$("#screenContainer").append("<div id='LoadScreen'></div>");
+
+		var imageList = ["loadingBackground", "loadingBar", "loadingCat"];
+
+		for (var i = 0; i < imageList.length; i++) {
+			$("#LoadScreen").append("<div class=" + imageList[i] + "></div>");
+			$("#LoadScreen ." + imageList[i]).css("background-image", "url(" + SpriteManager.get(imageList[i]).src + ")");
+		}
+
+		$("#LoadScreen").append("<div class='loadingText'><blink>" + txt.get("LABEL_LOADINGSCREEN_LOADING") + "</blink></div>");
+	}
+
+
+	return new LoadScreen();
+});

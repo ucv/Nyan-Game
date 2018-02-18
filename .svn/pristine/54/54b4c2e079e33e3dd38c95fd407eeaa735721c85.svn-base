@@ -1,0 +1,86 @@
+/**
+ * Class HighScore
+ */
+define([
+	"src/utils/assetsmanager/SpriteManager",
+	"src/utils/assetsmanager/SoundManager",
+	"src/utils/localization/txt"
+],
+function (
+	SpriteManager,
+	SoundManager,
+	txt
+) {
+	var HighScore = function () {
+
+	}
+
+
+	/**
+	 * Affiche le contenu dans popUp
+	 */
+	HighScore.prototype.init = function (UIManager) {
+		$("#screenContainer").append("<div id='HighScore' class='popUp'></div>");
+		$("#blackScreen").show();
+
+		$("#screenContainer #HighScore").css("background-image", "url(" + SpriteManager.get("popUpVertical").src + ")")
+									  .css("width", 786.8)
+									  .css("height", 600,5)
+									  .css( "left", "170" )
+									  .css( "top", "20" );
+
+		$("#HighScore").append("<div class='buttonClose'>" + txt.get("LABEL_POPUP_CLOSEBTN") + "</div>");
+		$("#HighScore .buttonClose").css("background-image", "url(" + SpriteManager.get("buttonLoginStatic").src + ")")
+									.css("top","485");
+
+		// Hover
+		$("#HighScore .buttonClose").hover(function() {
+			$( this ).css("background-image", "url(" + SpriteManager.get("buttonLoginSurvol").src + ")");
+			$("#HighScore .buttonClose").css("background-repeat", "no-repeat");
+			SoundManager.play("buttonHover");
+		}, function() {
+			$( this ).css("background-image", "url(" + SpriteManager.get("buttonLoginStatic").src + ")");
+		});
+
+		// Active
+		$("#HighScore .buttonClose").mousedown(function() {
+			$("#HighScore .buttonClose").css("background-image", "url(" + SpriteManager.get("buttonLoginPress").src + ")");
+			$("#HighScore .buttonClose").css("padding-top", 12);
+		});
+
+		$("#HighScore .buttonClose").mouseup(function() {
+			$("#HighScore .buttonClose").css("background-image", "url(" + SpriteManager.get("buttonLoginStatic").src + ")");
+			$("#HighScore .buttonClose").css("padding-top", 8);
+			$("#blackScreen").hide();
+			SoundManager.play("meow14");
+			UIManager.closeScreen("HighScore", true);
+		});
+
+		//Title
+		$("#screenContainer #HighScore").append("<div class='highScoreTitle'>HIGH SCORE</div>");
+
+		//Liste des joueurs
+		highScores = [
+			["JeanPierre","20"],
+			["JeanMarc","21"],
+			["JeanFrancis","23"],
+			["JeanneDupont","25"],
+			["JeanneVart","29"],
+			["JeanPierre","30"],
+			["JeanMarc","30"],
+			["JeanFrancis","30"],
+			["JeanneDupont","30"],
+			["JeanneVart","30"]
+		];
+
+		for (var i = 0; i < highScores.length; i++) {
+			$("#screenContainer #HighScore").append("<div class='nameAndScore' id='number" + i + "'" + ">" + (i + 1) + ". " + highScores[i][0] + " : " + highScores[i][1] + "</div>");
+			var topOffset = 100 + 30 * i;
+			$("#number" + i).css("top", topOffset);
+		};
+
+		$("#screenContainer #HighScore").append("<div id='yourHighScore'>22. Votre score : 12</div>");
+
+	}
+	return new HighScore();
+});

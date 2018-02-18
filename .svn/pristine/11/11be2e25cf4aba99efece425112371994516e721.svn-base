@@ -1,0 +1,45 @@
+/**
+ * Css de la page du menu
+ */
+.menuBackground {
+	position: absolute;
+	height: 640px;
+	width: 1136px;
+	background-image: url(../assets/img/sprite/ui/menuBackground.png);
+}
+
+.buttonMenu {
+    position: absolute;
+    text-align: center;
+    font-family:Fipps, sans-serif;
+    font-size: 1.2em;
+    left: 390px;
+    top: 160px;
+    height: 84px;
+    width: 331px;
+    cursor:pointer;
+}
+
+#Play {
+
+}
+
+#Highscore {
+    left: 390px;
+    top: 250px;
+}
+
+#Options {
+    left: 390px;
+    top: 340px;
+}
+
+#About {
+    left: 390px;
+    top: 430px;
+}
+
+#Help {
+    left: 390px;
+    top: 520px;
+}

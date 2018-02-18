@@ -1,0 +1,37 @@
+/**
+ * Permet de gerer toutes les caisses du jeu
+ */
+define([
+],
+function (
+) {
+	var CrateManager = function () {
+		this.list = [];
+	}
+
+
+	CrateManager.prototype.update = function () {
+		for (var i = 0; i < this.list.length; i++) {
+			this.list[i].update();
+		};
+	}
+
+
+	/**
+	 * Return la classe d'un crate grâce à ses coordonées
+	 */
+	CrateManager.prototype.getByCoord = function (x, y) {
+		
+	}
+
+
+	CrateManager.prototype.destroyAll = function () {
+		for (var i = 0; i < this.list.length; i++) {
+			this.list[i].destroy();
+		};
+		this.list = [];
+	}
+
+
+	return new CrateManager();
+});

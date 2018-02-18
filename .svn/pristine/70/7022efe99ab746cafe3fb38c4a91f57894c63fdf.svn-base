@@ -1,0 +1,43 @@
+body {
+	background-color: white;
+}
+
+#gameContainer {
+	position: absolute;
+	top : 0px;
+	left : 0px;
+}
+
+.loadingBackground {
+	position: absolute;
+	height: 640px;
+	width: 1136px;
+	background-image: url(../assets/img/sprite/ui/loadingBackground.png);
+}
+
+.loadingBar {
+	position: absolute;
+	height: 87px;
+	width: 999px;
+	left: 77px;
+	top: 496px;
+	background-image: url(../assets/img/sprite/ui/loadingBar.png);
+<<<<<<< .mine
+}
+
+@font-face {
+	font-family: 'Fipps';
+	src: url('font/Fipps.otf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+}
+
+
+.h4 {
+	font-family:Fipps, sans-serif;
+	font-size: 1.4em;
+	position: absolute;
+	left: 400px;
+	top: 470px;
+	text-shadow: 0px 0px 4px #bbb;
+}

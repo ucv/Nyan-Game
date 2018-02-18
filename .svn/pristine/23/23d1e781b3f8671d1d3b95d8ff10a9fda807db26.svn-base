@@ -1,0 +1,58 @@
+/**
+ * Ecran de Login
+ */
+define([
+	"src/utils/assetsmanager/SpriteManager",
+	"src/utils/assetsmanager/SoundManager"
+],
+function (
+	SpriteManager,
+	SoundManager
+) {
+	var Login = function () {
+
+	}
+
+
+	/**
+	 * Affiche le contenu dans gameContainer
+	 */
+	Login.prototype.init = function (UIManager) {
+		SoundManager.play("nyan_elevator", true);
+
+		$("#screenContainer").append("<div id='Login'></div>");
+		$("#Login").append("<div class='loginBackground'></div>");
+		$("#Login").append("<div class='topDescription'>Please log in :</div>");
+		$("#Login").append("<div><input class='textBoxLogin' type='text' name='login' placeholder='Login*'</input><input class='textBoxPassword' type='password' name='pass' placeholder='password*'</input></div>");
+		$("#Login").append("<div class='buttonConnection'>Connect</div>");
+		$("#login .buttonConnection").css("background-image", "url(" + SpriteManager.get("buttonLoginStatic").src + ")");
+		$( "#login .buttonConnection").hover(function() {
+			$( this ).css("background-image", "url(" + SpriteManager.get("buttonLoginSurvol").src + ")");
+			$("#login .buttonConnection").css("background-repeat", "no-repeat");
+			SoundManager.play("buttonHover");
+		}, function() {
+			$( this ).css("background-image", "url(" + SpriteManager.get("buttonLoginStatic").src + ")");
+		});
+
+		$( "#login .buttonConnection").mousedown(function() {
+			$("#login .buttonConnection").css("background-image", "url(" + SpriteManager.get("buttonLoginPress").src + ")");
+			$("#login .buttonConnection").css("padding-top", 12);
+		});
+
+		$( "#login .buttonConnection").mouseup(function() {
+			$("#login .buttonConnection").css("background-image", "url(" + SpriteManager.get("buttonLoginStatic").src + ")");
+			$("#login .buttonConnection").css("padding-top", 8);
+			SoundManager.play("meow14");
+
+			// CODE DE CONEXION ICI
+			UIManager.closeScreen("Login", true);
+			UIManager.addScreen("Menu", true);
+
+		});
+
+		$("#Login").append("<div class='botDescription'>*If you don't have an account, he will be automatically created.</div>");
+	}
+
+
+	return new Login();
+});

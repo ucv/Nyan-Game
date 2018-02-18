@@ -1,0 +1,23 @@
+/**
+ * Tout ce qui concerne le jeu
+ */
+#player {
+	position: absolute;
+	background-repeat: no-repeat;
+	background-size: cover;
+	z-index: 3;
+}
+
+.tile {
+	position: absolute;
+	background-repeat: no-repeat;
+	background-size: cover;
+	z-index: 1;
+}
+
+.crate {
+	position: absolute;
+	background-repeat: no-repeat;
+	background-size: cover;
+	z-index: 3;
+}

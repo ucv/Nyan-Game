@@ -1,0 +1,107 @@
+/**
+ * Class qui permet de charger les maps
+ */
+define([
+	"jquery",
+	"src/utils/Config",
+	"src/utils/assetsmanager/SpriteManager",
+	"src/utils/math/Vector2",
+	"src/game/game/crate/Crate",
+	"assets/map/level1"
+],
+function (
+	$,
+	Config,
+	SpriteManager,
+	Vector2,
+	Crate,
+	level1
+) {
+	var MapManager = function () {
+		this.currentMap = [];
+		this.mapHistory = [];
+	}
+
+
+	/**
+	 * Charge une map et l'affiche sur le jeu
+	 */
+	MapManager.prototype.loadMap = function (name) {
+		this.currentMap = [];
+		var imageName = "";
+		var map = eval(name);
+		$("#gameContainer").append("<div id='mapContainer'></div>")
+		for (var i = 0; i < map.layers[0].data.length; i++) {
+			this.currentMap.push(map.layers[0].data[i]);
+			switch (map.layers[0].data[i]) {
+				case 17:
+					imageName = "roche";
+					break;
+				case 1:
+					imageName = "herbe";
+					break;
+				case 72:
+					imageName = "emplacement";
+					break;
+				case 26:
+					imageName = "herbe";
+					new Crate((i % Config.mapSizeX), Math.floor(i / Config.mapSizeY), this);
+					break;
+				case 13:
+					// PlayerStart
+					imageName = "herbe";
+					break;
+			}
+			$('#mapContainer').append('<div id="tile' + i + '" class="' + imageName + ' tile"></div>');
+			$('#tile' + i).css("background-image", "url(" + SpriteManager.get(imageName).src + ")");
+			$('#tile' + i).css("left", Config.mapWidth * (i % Config.mapSizeX))
+						  .css("top", Config.mapHeight * Math.floor(i / Config.mapSizeY))
+						  .css("width", Config.mapWidth)
+						  .css("height", Config.mapHeight);
+			$('#tile' + i).hide();
+			setTimeout((function (id) {
+				return function () {
+					$('#tile' + id).fadeIn(400);
+				};
+			})(i), Config.fadeInMin + Math.random() * (Config.fadeInMax - Config.fadeInMin));
+		}
+	}
+
+
+	/**
+	 * Détruit la map actuel
+	 */
+	MapManager.prototype.removeMap = function () {
+		for (var i = 0; i < this.currentMap.length; i++) {
+			setTimeout((function (id) {
+			return function () {
+				$('#tile' + id).fadeOut(400, function () {
+					$('#tile' + id).remove();
+				});
+			};
+		})(i), Config.fadeInMin + Math.random() * (Config.fadeInMax - Config.fadeInMin));
+		}
+		this.currentMap = [];
+	}
+
+
+	/**
+	  * Return la valeur d'une case
+	  * @x Abcisse de la case
+	  * @y Ordonnée de la case
+	  */
+	MapManager.prototype.getCellValue = function (x ,y) {
+		return this.currentMap[(y % Config.mapSizeX) * Config.mapSizeX + x];
+	}
+
+
+	/**
+	 * Retourne l'id de la case ce trouvant à la position x et y
+	 */
+	MapManager.prototype.getCellId = function (x, y) {
+		return (y % Config.mapSizeX) * Config.mapSizeX + x;
+	}
+	
+
+	return new MapManager();
+});

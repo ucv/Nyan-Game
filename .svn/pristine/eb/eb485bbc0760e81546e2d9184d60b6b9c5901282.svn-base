@@ -1,0 +1,7 @@
+/**
+ * Css de about
+ */
+.AboutScreen {
+	position: absolute;
+	background-repeat: no-repeat;
+}

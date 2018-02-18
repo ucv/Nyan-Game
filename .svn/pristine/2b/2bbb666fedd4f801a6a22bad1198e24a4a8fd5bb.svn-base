@@ -1,0 +1,22 @@
+/**
+ * css du popUp "Mauvais mot de passe".
+ */
+
+.wrongPasswordText {
+    margin-top: 17px;
+}
+
+
+.wrongPasswordTitle {
+    text-align: center;
+    padding-top: 20;
+    font-size: 1.3em;
+}
+
+
+.wrongPasswordDesc {
+	text-align: center;
+	line-height: 150%;
+	font-size: 0.9em;
+    padding-top: 8;
+}

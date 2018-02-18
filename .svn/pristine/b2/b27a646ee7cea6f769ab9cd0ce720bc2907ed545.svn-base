@@ -1,0 +1,85 @@
+/**
+ * La class debug permet d'apporter des fonctions supplémentaire pour le debuggage (log, sucess, warn, error)
+ */
+define([
+	"datgui",
+	"src/utils/Config",
+	"src/game/ui/UIManager",
+	"src/game/game/MapManager"
+],
+function (
+	dat,
+	Config,
+	UIManager,
+	MapManager
+) {
+	/*
+	 * Initialisation du gui de debug
+	 * Pour acceder à une valeur taper Debug.gui.variable
+	 */
+	var Debug = function () {
+		if (Config.guiDebug) {
+			// Initialisation de datgui
+			// http://workshop.chromeexperiments.com/examples/gui/#1--Basic-Usage
+			this.datgui = new dat.GUI();
+			this.guiOption = function () {
+				this.textInput = 0.5;
+				this.radioBox = true;
+				this.addScreen = function () {
+					UIManager.addScreen("LoadScreen");
+				};
+				this.closeScreen = function () {
+					UIManager.closeScreen();
+				};
+				this.loadMap = function () {
+					MapManager.loadMap("level1");
+				}
+				this.removeMap = function () {
+					MapManager.removeMap();
+				}
+			}
+			this.gui = new this.guiOption();
+			this.datgui.add(this.gui, "textInput");
+			this.datgui.add(this.gui, "radioBox");
+			this.datgui.add(this.gui, "addScreen");
+			this.datgui.add(this.gui, "closeScreen");
+			this.datgui.add(this.gui, "loadMap");
+			this.datgui.add(this.gui, "removeMap");
+		}
+	}
+
+
+	/**
+	 * Envoi un message normal (noir) dans la console
+	 */
+	Debug.prototype.log = function (msg) {
+		if (Config.debug) console.log(msg);
+	}
+
+
+	/**
+	 * Envoi un message en vert dans la console
+	 */
+	 Debug.prototype.success = function (msg) {
+	 	if (Config.debug) console.log("%c" + msg, "color:green;");
+	 }
+
+
+	/**
+	 * Envoi un message orange dans la console
+	 */
+	Debug.prototype.warn = function (msg) {
+		if (Config.debug) console.warn(msg);
+	}
+
+
+	/**
+	 * Envoi un message rouge dans la console
+	 */
+	Debug.prototype.error = function (msg) {
+		if (Config.debug) console.error(msg);
+	}
+
+
+	return new Debug();
+});

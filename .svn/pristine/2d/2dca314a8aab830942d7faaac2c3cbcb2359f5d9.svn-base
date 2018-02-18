@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="11" height="11" tilewidth="16" tileheight="16">
+ <properties>
+  <property name="eatPower" value="2"/>
+ </properties>
+ <tileset firstgid="1" name="tileset" tilewidth="16" tileheight="16">
+  <image source="../img/sprite/game/tileset.png" width="112" height="16"/>
+ </tileset>
+ <layer name="Calque de Tile 1" width="11" height="11">
+  <data encoding="base64" compression="zlib">
+   eJyVkUEKACAIBE3r/1/OoIVFNPIwFDkuoSoi2mA65owEu3W4sWZ0xzu76EeG0Vm5Sj0gcyuiG7NeuR339w+rmC3T2ddhAwz7ARw=
+  </data>
+ </layer>
+</map>

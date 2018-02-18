@@ -1,0 +1,143 @@
+/**
+ * Ecran de Menu
+ */
+define([
+	"src/utils/assetsmanager/SpriteManager",
+	"src/utils/assetsmanager/SoundManager"
+],
+function (
+	SpriteManager,
+	SoundManager
+) {
+	var Menu = function () {
+
+	}
+
+
+	/**
+	 * Affiche le contenu dans gameContainer
+	 */
+	Menu.prototype.init = function (UIManager) {
+		$("#screenContainer").append("<div id='Menu'></div>");
+		$("#Menu").append("<div class='loginBackground'></div>");
+		$("#Menu").append("<div class='menuBackground'></div>");
+
+		var buttonList = ["Play", "Hightscore", "Help", "About"];
+
+		for (var i = 0; i < 4; i++) {
+			// Append
+			$("#Menu").append("<div id='" + buttonList[i] + "' class='buttonMenu'>" + buttonList[i] + "</div>");
+			$("#Menu #" + buttonList[i]).css("background-image", "url(" + SpriteManager.get("buttonMenuStatic").src + ")");
+			$("#Menu #" + buttonList[i]).css("background-repeat", "no-repeat");
+
+			// Hover
+			$("#Menu #" + buttonList[i]).hover(function() {
+				$( this ).css("background-image", "url(" + SpriteManager.get("buttonMenuSurvol").src + ")");
+				SoundManager.play("buttonHover");
+			}, function() {
+				$( this ).css("background-image", "url(" + SpriteManager.get("buttonMenuStatic").src + ")");
+			});
+
+			// Active
+			$("#Menu #" + buttonList[i]).mousedown((function(id) {
+				return function () {
+					$("#Menu #" + buttonList[id]).css("background-image", "url(" + SpriteManager.get("buttonMenuPress").src + ")");
+					$("#Menu #" + buttonList[id]).css("padding-top", 12);
+				}
+			})(i));
+
+			$("#Menu #" + buttonList[i]).mouseup((function(id) {
+				return function () {
+					$("#Menu #" + buttonList[id]).css("background-image", "url(" + SpriteManager.get("buttonMenuStatic").src + ")");
+					$("#Menu #" + buttonList[id]).css("padding-top", 0);
+					SoundManager.play("meow14");
+				}
+			})(i));
+		};
+
+		// $("#Menu").append("<div id='Play' class='buttonMenu'>Play</div>");
+		// $("#Menu #Play").css("background-image", "url(" + SpriteManager.get("buttonMenuStatic").src + ")");
+
+		// $("#Menu #Play").hover(function() {
+		// 	$( this ).css("background-image", "url(" + SpriteManager.get("buttonMenuSurvol").src + ")");
+		// 	$("#Menu #Play").css("background-repeat", "no-repeat");
+		// }, function() {
+		// 	$( this ).css("background-image", "url(" + SpriteManager.get("buttonMenuStatic").src + ")");
+		// });
+
+		// $("#Menu #Play").mousedown(function() {
+		// 	$("#Menu #Play").css("background-image", "url(" + SpriteManager.get("buttonMenuPress").src + ")");
+		// 	$("#Menu #Play").css("padding-top", 12);
+		// });
+
+		// $("#Menu #Play").mouseup(function() {
+		// 	$("#Menu #Play").css("background-image", "url(" + SpriteManager.get("buttonMenuStatic").src + ")");
+		// 	$("#Menu #Play").css("padding-top", 0);
+		// });
+
+
+		// $("#Menu").append("<div id='HighScore' class='buttonMenu'>HighScore</div>");
+		// $("#Menu #HighScore").css("background-image", "url(" + SpriteManager.get("buttonMenuStatic").src + ")");
+
+		// $("#Menu #HighScore").hover(function() {
+		// 	$( this ).css("background-image", "url(" + SpriteManager.get("buttonMenuSurvol").src + ")");
+		// 	$("#Menu #HighScore").css("background-repeat", "no-repeat");
+		// }, function() {
+		// 	$( this ).css("background-image", "url(" + SpriteManager.get("buttonMenuStatic").src + ")");
+		// });
+
+		// $("#Menu #HighScore").mousedown(function() {
+		// 	$("#Menu #HighScore").css("background-image", "url(" + SpriteManager.get("buttonMenuPress").src + ")");
+		// 	$("#Menu #HighScore").css("padding-top", 12);
+		// });
+
+		// $("#Menu #HighScore").mouseup(function() {
+		// 	$("#Menu #HighScore").css("background-image", "url(" + SpriteManager.get("buttonMenuStatic").src + ")");
+		// 	$("#Menu #HighScore").css("padding-top", 0);
+		// });
+
+
+		// $("#Menu").append("<div id='Help' class='buttonMenu'>Help</div>");
+		// $("#Menu #Help").css("background-image", "url(" + SpriteManager.get("buttonMenuStatic").src + ")");
+
+		// $("#Menu #Help").hover(function() {
+		// 	$( this ).css("background-image", "url(" + SpriteManager.get("buttonMenuSurvol").src + ")");
+		// 	$("#Menu #Help").css("background-repeat", "no-repeat");
+		// }, function() {
+		// 	$( this ).css("background-image", "url(" + SpriteManager.get("buttonMenuStatic").src + ")");
+		// });
+
+		// $("#Menu #Help").mousedown(function() {
+		// 	$("#Menu #Help").css("background-image", "url(" + SpriteManager.get("buttonMenuPress").src + ")");
+		// 	$("#Menu #Help").css("padding-top", 12);
+		// });
+
+		// $("#Menu #Help").mouseup(function() {
+		// 	$("#Menu #Help").css("background-image", "url(" + SpriteManager.get("buttonMenuStatic").src + ")");
+		// 	$("#Menu #Help").css("padding-top", 0);
+		// });
+
+		// $("#Menu").append("<div id='About' class='buttonMenu'>About</div>");
+		// $("#Menu #About").css("background-image", "url(" + SpriteManager.get("buttonMenuStatic").src + ")");
+
+		// $("#Menu #About").hover(function() {
+		// 	$( this ).css("background-image", "url(" + SpriteManager.get("buttonMenuSurvol").src + ")");
+		// 	$("#Menu #About").css("background-repeat", "no-repeat");
+		// }, function() {
+		// 	$( this ).css("background-image", "url(" + SpriteManager.get("buttonMenuStatic").src + ")");
+		// });
+
+		// $("#Menu #About").mousedown(function() {
+		// 	$("#Menu #About").css("background-image", "url(" + SpriteManager.get("buttonMenuPress").src + ")");
+		// 	$("#Menu #About").css("padding-top", 12);
+		// });
+
+		// $("#Menu #About").mouseup(function() {
+		// 	$("#Menu #About").css("background-image", "url(" + SpriteManager.get("buttonMenuStatic").src + ")");
+		// 	$("#Menu #About").css("padding-top", 0);
+		// });
+	}
+
+
+	return new Menu();
+});

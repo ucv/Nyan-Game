@@ -1,0 +1,126 @@
+/**
+ * Class Options
+ */
+define([
+	"jquery",
+	"jquery-ui",
+	"src/utils/assetsmanager/SpriteManager",
+	"src/utils/assetsmanager/SoundManager",
+	"src/utils/localization/txt"
+],
+function (
+	$,
+	ui,
+	SpriteManager,
+	SoundManager,
+	txt
+) {
+	var Options = function () {
+
+	}
+
+
+	/**
+	 * Affiche le contenu dans popUp
+	 */
+	Options.prototype.init = function (UIManager) {
+		$("#screenContainer").append("<div id='Options' class='popUp'></div>");
+		$("#blackScreen").show();
+
+		$("#screenContainer #Options").css("background-image", "url(" + SpriteManager.get("popUp").src + ")");
+		$("#screenContainer #Options").css( "background-size", "70%" );
+		$("#screenContainer #Options").css( "left", "170" );
+		$("#screenContainer #Options").css( "top", "160" );
+
+		$("#Options").append("<div class='buttonClose'>" + txt.get("LABEL_POPUP_CLOSEBTN") + "</div>");
+		$("#Options .buttonClose").css("background-image", "url(" + SpriteManager.get("buttonLoginStatic").src + ")");
+
+		// Hover
+		$( "#Options .buttonClose").hover(function() {
+			$( this ).css("background-image", "url(" + SpriteManager.get("buttonLoginSurvol").src + ")");
+			$("#Options .buttonClose").css("background-repeat", "no-repeat");
+			SoundManager.play("buttonHover");
+		}, function() {
+			$( this ).css("background-image", "url(" + SpriteManager.get("buttonLoginStatic").src + ")");
+		});
+
+		// Active
+		$( "#Options .buttonClose").mousedown(function() {
+			$("#Options .buttonClose").css("background-image", "url(" + SpriteManager.get("buttonLoginPress").src + ")");
+			$("#Options .buttonClose").css("padding-top", 12);
+		});
+
+		$("#Options .buttonClose").mouseup(function() {
+			$("#Options .buttonClose").css("background-image", "url(" + SpriteManager.get("buttonLoginStatic").src + ")");
+			$("#Options .buttonClose").css("padding-top", 8);
+			$("#blackScreen").hide();
+			SoundManager.play("meow14");
+			UIManager.closeScreen("Options", true);
+		});
+
+		
+		var sliderName = ["Global", "Music", "Sfx"]
+		var sliderFunction = [];
+
+		for (var i = 0; i < sliderName.length; i++) {
+			$("#screenContainer #Options").append("<section><span id='tooltip" + sliderName[i] + "' class='tooltip'></span><div id='slider" + sliderName[i] + "' class='slider'></div><span id='volume" + sliderName[i] + " class='volume''></span></section>");
+			
+			// $("#screenContainer #Options #slider" + sliderName[id]).css( "left", "170" );
+			// $("#screenContainer #Options #slider" + sliderName[id]).css( "top", "170" );
+
+			sliderFunction[i] = (function(id) {
+	  			return function () {
+	  				var slider = $("#screenContainer #Options #slider" + sliderName[id]);
+					var tooltip = $("#screenContainer #Options #tooltip" + sliderName[id]);  
+
+					tooltip.hide();  
+				  
+					slider.slider({  
+						range: "min",  
+						min: 1,
+						max: 393, 
+						value: 35,  
+				  
+						start: function(event,ui) {  
+						  tooltip.fadeIn('fast');  
+						},  
+				  
+						slide: function(event, ui) {  
+				  
+							var value = slider.slider('value'); 
+							var volume = $('#volume' + sliderName[id]);  
+				  
+							tooltip.css('left', value).text(ui.value);  
+				  
+							if(value <= 5) {   
+								volume.css('background-position', '0 0');  
+							}   
+							else if (value <= 25) {  
+								volume.css('background-position', '0 -25px');  
+							}   
+							else if (value <= 75) {  
+								volume.css('background-position', '0 -50px');  
+							}   
+							else {  
+								volume.css('background-position', '0 -75px');  
+							};  
+				  
+						},  
+				  
+						stop: function(event,ui) {  
+						  tooltip.fadeOut('fast');  
+						},  
+					});
+	  			}
+			})(i);
+
+			sliderFunction[i]();
+		};
+
+
+		$("#screenContainer #Options").append("<div class='optionsText title'>" + txt.get("LABEL_POPUP_OPTIONS_TITLE") + "</div>");
+	}
+
+	
+	return new Options();
+});

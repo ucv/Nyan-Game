@@ -1,0 +1,53 @@
+/**
+ * Class qui permet de récuperer les phrases en fonction de la langue.
+ */
+define([
+	"src/utils/Config",
+	"src/game/server/ServerConfig",
+	"src/utils/localization/en",
+	"src/utils/localization/fr",
+	"src/utils/localization/de",
+	"src/utils/localization/es",
+	"src/utils/localization/it",
+	"src/utils/localization/pl"
+],
+function (
+	Config,
+	ServerConfig,
+	en,
+	fr,
+	de,
+	es,
+	it,
+	pl
+) {
+	var txt = function () {
+		this.xliffData = {};
+	}
+
+
+	txt.prototype.init = function () {
+		for (var i = 0; i < Config.availableLanguage.length; i++) {
+			$.get(Config.xliffPath + Config.availableLanguage[i] + ".xiff",
+				(function (lang, obj) {
+					return function (xliff) {
+						var xliff = $.parseXML(xliff);
+						obj.xliffData[lang] = xliff;
+					}
+				})(Config.availableLanguage[i], this)
+			);
+		};
+	}
+
+
+	/**
+	 * Récupère une phrase en fonction de la langue
+	 */
+	txt.prototype.get = function (labelName) {
+		var langFile = eval(Config.language);
+		return langFile[labelName].target;
+	}
+
+
+	return new txt();
+});

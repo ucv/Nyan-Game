@@ -1,0 +1,24 @@
+/**
+ * Ecran de Login
+ */
+define([
+],
+function (
+) {
+	var Login = function () {
+
+	}
+
+
+	/**
+	 * Affiche le contenu dans gameContainer
+	 */
+	Login.prototype.init = function () {
+		$("#gameContainer").append("<div class='loginBackground'></div>");
+		$("#gameContainer").append("<div class='login'>Votre pseudo</div>");
+		$("#gameContainer").append("<div class='password'>Votre Mot de passe</div>");
+	}
+
+
+	return new Login();
+});

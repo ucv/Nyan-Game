@@ -1,0 +1,99 @@
+/**
+ * Tout ce qui concerne le jeu
+ */
+
+#mapContainer {
+	position: absolute;
+	left: 238px;
+	top: -16px;
+}
+
+#player {
+	position: absolute;
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+	z-index: 3;
+}
+
+.tile {
+	position: absolute;
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+	z-index: 1;
+}
+
+.box {
+	position: absolute;
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+	z-index: 3;
+}
+
+/**
+ * css du hud
+ */
+
+#hudSpecialText {
+    position: absolute;
+    text-align: center;
+	font-family:Fipps, sans-serif;
+    font-size: 1em;
+    left: 65px;
+    top: 170px;
+}
+.hudSpecialLogo {
+    position: absolute;
+    font-family:Fipps, sans-serif;
+    width: 45px;
+    height: 45px;
+    top: 220px;
+    background-size: 100% 100%;
+}
+
+
+#hudTimeText {
+    position: absolute;
+    font-family:Fipps, sans-serif;
+    font-size: 1.2em;
+    top: 292px;
+    left: 120px;
+}
+
+#hudActionTitleText {
+    position: absolute;
+    font-family:Fipps, sans-serif;
+    font-size: 1em;
+    top: 367px;
+    left: 79px;
+}
+#hudActionNumberText {
+    position: absolute;
+    font-family:Fipps, sans-serif;
+    font-size: 1.2em;
+    top: 401px;
+    left: 127px;
+}
+
+#menuContainer .buttonMenu {
+	position: absolute;
+	left: 910px;
+	height: 62px;
+    width: 185.5px;
+    background-size: 100% 100%;
+    font-size: 0.8em;
+}
+
+#menuContainer #OptionsBtn {
+    top: 210px;
+    cursor: pointer;
+}
+
+#menuContainer #HelpBtn {
+    top: 300px;
+    cursor: not-allowed;
+}
+
+#menuContainer #MenuBtn {
+    top: 390px;
+    cursor: pointer;
+}

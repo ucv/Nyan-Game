@@ -1,0 +1,110 @@
+/*
+* GameLoop du jeu. Stock les fonctions de base du jeu (Pause, resume)
+*/
+define([
+	"jquery",
+	"underscore",
+	"howler",
+	"src/utils/debug/Debug",
+	"src/utils/debug/Stats",
+	"src/utils/game/Time",
+	"src/utils/math/Vector2",
+	"src/utils/display/GameContainer",
+	"src/utils/assetsmanager/SpriteManager",
+	"src/utils/assetsmanager/SoundManager",
+	"src/utils/assetsmanager/AnimationManager",
+	"src/game/controller/Controller",
+	"src/game/controller/Keyboard",
+	"src/game/controller/GamePad",
+	"src/utils/assetsmanager/Animation"
+],
+function (
+	$,
+	_,
+	howler,
+	Debug,
+	Stats,
+	Time,
+	Vector2,
+	GameContainer,
+	SpriteManager,
+	SoundManager,
+	AnimationManager,
+	Controller,
+	Keyboard,
+	GamePad,
+	Animation
+) {
+	var GameManager = function () {
+		
+	}
+
+
+	/**
+	 * Initialisation du jeu.
+	 */
+	GameManager.prototype.init = function () {
+		Debug.success("GameManager initialised.");
+		Stats.init();
+		GameContainer.init();
+		Controller.init();
+		Keyboard.init();
+		GamePad.init();
+		Time.init();
+
+		$("#gameContainer").append("<div id='test'></div>")
+
+		gameloop();
+	}
+
+
+	/**
+	 * Execute toutes les updates des managers
+	 */
+	function update () {
+		GamePad.update();
+		AnimationManager.update();
+	}
+
+
+	/**
+	 * Execute toutes les collisions
+	 */
+	function collider () {
+
+	}
+
+
+	/**
+	 * Met à jours les animations
+	 */
+	function animate () {
+
+	}
+
+
+	/**
+	 * Permet d'updater les objets
+	 */
+	function render () {
+
+	}
+
+
+	/**
+	 * Gameloop principal du jeu
+	 */
+	function gameloop () {
+		Stats.begin();
+		Time.updatedt();
+		update();
+		collider();
+		animate();
+		render();
+		Stats.end();
+		window.requestAnimationFrame(gameloop);
+	}
+
+
+	return new GameManager();
+});

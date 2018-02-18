@@ -1,0 +1,19 @@
+/**
+ * Ecran du jeu
+ */
+define([
+],
+function (
+) {
+	var GameStage = function () {
+
+	}
+
+
+	GameStage.prototype.init = function (UIManager) {
+		$("#screenContainer").append("<div id='GameStage'></div>");
+	}
+
+
+	return new GameStage();
+});

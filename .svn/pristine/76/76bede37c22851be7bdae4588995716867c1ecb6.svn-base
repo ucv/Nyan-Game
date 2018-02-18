@@ -1,0 +1,123 @@
+/**
+ * Class qui permet de charger les maps
+ */
+define([
+	"jquery",
+	"src/utils/Config",
+	"src/utils/assetsmanager/SpriteManager",
+	"src/utils/math/Vector2",
+	"src/game/game/box/Box",
+	"src/game/game/box/BoxManager",
+	"assets/map/level1"
+],
+function (
+	$,
+	Config,
+	SpriteManager,
+	Vector2,
+	Box,
+	BoxManager,
+	level1
+) {
+	var MapManager = function () {
+		this.currentMap = [];
+		this.mapHistory = [];
+		this.cell = {
+			wall: 17,
+			floor: 1,
+			goal: 72,
+			box: 26,
+			player: 13,
+			playerOnGoal: 14,
+			boxOnGoal: 66
+		}
+	}
+
+
+	/**
+	 * Charge une map et l'affiche sur le jeu
+	 */
+	MapManager.prototype.loadMap = function (name) {
+		this.currentMap = [];
+		var imageName = "";
+		var map = eval(name);
+		$("#gameContainer").append("<div id='mapContainer'></div>")
+		for (var i = 0; i < map.layers[0].data.length; i++) {
+			this.currentMap.push(map.layers[0].data[i]);
+			switch (map.layers[0].data[i]) {
+				case this.cell.wall:
+					imageName = "roche";
+					break;
+				case this.cell.floor:
+					imageName = "herbe";
+					break;
+				case this.cell.goal:
+					imageName = "emplacement";
+					break;
+				case this.cell.box:
+					imageName = "herbe";
+					new Box((i % Config.mapSizeX), Math.floor(i / Config.mapSizeY), this);
+					break;
+				case this.cell.player:
+					// PlayerStart
+					$("#mapContainer").append("<div id='player'></div>")
+					$("#player").css("background-image", "url(" + SpriteManager.get("player").src + ")")
+								.css("width", 141 * Math.max(Config.mapWidth, Config.mapHeight) / 110)
+								.css("height", 87 * Math.max(Config.mapWidth, Config.mapHeight) / 110);
+								imageName = "herbe";
+					break;
+			}
+			$('#mapContainer').append('<div id="tile' + i + '" class="' + imageName + ' tile"></div>');
+			$('#tile' + i).css("background-image", "url(" + SpriteManager.get(imageName).src + ")");
+			$('#tile' + i).css("left", Config.mapWidth * (i % Config.mapSizeX))
+						  .css("top", Config.mapHeight * Math.floor(i / Config.mapSizeY))
+						  .css("width", Config.mapWidth)
+						  .css("height", Config.mapHeight);
+			$('#tile' + i).hide();
+			setTimeout((function (id) {
+				return function () {
+					$('#tile' + id).fadeIn(400);
+				};
+			})(i), Config.fadeInMin + Math.random() * (Config.fadeInMax - Config.fadeInMin));
+		}
+	}
+
+
+	/**
+	 * Détruit la map actuel
+	 */
+	MapManager.prototype.removeMap = function () {
+		for (var i = 0; i < this.currentMap.length; i++) {
+			setTimeout((function (id) {
+				return function () {
+					$('#tile' + id).fadeOut(400, function () {
+						$('#tile' + id).remove();
+					});
+				};
+			})(i), Config.fadeInMin + Math.random() * (Config.fadeInMax - Config.fadeInMin));
+		}
+		BoxManager.destroyAll();
+		this.currentMap = [];
+	}
+
+
+	/**
+	  * Return la valeur d'une case
+	  * @x Abcisse de la case
+	  * @y Ordonnée de la case
+	  */
+	MapManager.prototype.getCellValue = function (x ,y) {
+		return this.currentMap[(y % Config.mapSizeX) * Config.mapSizeX + x];
+	}
+
+
+	/**
+	 * Retourne l'id de la case ce trouvant à la position x et y
+	 */
+	MapManager.prototype.getCellId = function (x, y) {
+		return (y % Config.mapSizeX) * Config.mapSizeX + x;
+	}
+	
+
+	return new MapManager();
+});

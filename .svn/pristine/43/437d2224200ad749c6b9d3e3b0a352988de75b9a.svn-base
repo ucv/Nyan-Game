@@ -1,0 +1,65 @@
+/**
+ * Class qui permet de charger les maps
+ */
+define([
+	"jquery",
+	"src/utils/Config",
+	"src/utils/assetsmanager/SpriteManager",
+	"assets/map/level1"
+],
+function (
+	$,
+	Config,
+	SpriteManager,
+	level1
+) {
+	var MapManager = function () {
+		this.currentMap = [];
+	}
+
+
+	/**
+	 * Charge une map et l'affiche sur le jeu
+	 */
+	MapManager.prototype.loadMap = function (name) {
+		this.currentMap = [];
+		var imageName = "";
+		var map = eval(name);
+		for (var i = 0; i < map.layers[0].data.length; i++) {
+			this.currentMap.push(map.layers[0].data[i]);
+			//switch(map.layers[0].data[i]) {
+			switch(123) {
+				case 123:
+					imageName = "chrome";
+					break;
+				case 124:
+					imageName = "firefox";
+					break;
+			}
+			$('#gameContainer').append('<div id="tile' + i + '" class="' + imageName + '"></div>');
+			$('#tile' + i).css("background-image", "url(" + SpriteManager.get(imageName).src + ")");
+			$('#tile' + i).css("position", "absolute")
+						  .css("left", Config.mapWidth * (i % Config.mapSizeX))
+						  .css("top", Config.mapHeight * Math.floor(i / Config.mapSizeY))
+						  .css("width", Config.mapWidth)
+						  .css("height", Config.mapHeight);
+			$('#tile' + i).hide();
+			setTimeout((function (id) {
+				return function () {
+					$('#tile' + id).fadeIn(400);
+				};
+			})(i), Config.fadeInMin + Math.random() * (Config.fadeInMax - Config.fadeInMin));
+		}
+	}
+
+
+	/**
+	 * Détruit la map actuel
+	 */
+	 MapManager.prototype.removeMap = function () {
+	 	this.currentMap = [];
+	 }
+
+
+	return new MapManager();
+});

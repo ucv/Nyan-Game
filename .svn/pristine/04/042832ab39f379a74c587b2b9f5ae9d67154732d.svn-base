@@ -1,0 +1,195 @@
+<xliff version="1.2">
+	<file original="" source-language="en-US" target-language="en-US">
+	<header></header>
+	<body>
+		<trans-unit id="LABEL_LOADINGSCREEN_LOADING">
+			<source>Loading the game</source>
+			<target>Loading the game</target>
+		</trans-unit>
+		<trans-unit id="LABEL_LOGINSCREEN_LOGINTEXT">
+			<source>Log in :</source>
+			<target>Log in :</target>
+		</trans-unit>
+		<trans-unit id="LABEL_LOGINSCREEN_LOGINTEXTFIELD">
+			<source>Account*</source>
+			<target>Account*</target>
+		</trans-unit>
+		<trans-unit id="LABEL_LOGINSCREEN_PASSTEXTFIELD">
+			<source>Password*</source>
+			<target>Password*</target>
+		</trans-unit>
+		<trans-unit id="LABEL_LOGINSCREEN_CONNECTBTN">
+			<source>Connect</source>
+			<target>Connect</target>
+		</trans-unit>
+		<trans-unit id="LABEL_LOGINSCREEN_TIP">
+			<source>*If you don't have an account, it will be automatically created.</source>
+			<target>*If you don't have an account, it will be automatically created.</target>
+		</trans-unit>
+		<trans-unit id="LABEL_MENU_PLAYBTN">
+			<source>Play</source>
+			<target>Play</target>
+		</trans-unit>
+		<trans-unit id="LABEL_MENU_HIGHSCOREBTN">
+			<source>Highscore</source>
+			<target>Highscore</target>
+		</trans-unit>
+		<trans-unit id="LABEL_MENU_OPTIONSBTN">
+			<source>Options</source>
+			<target>Options</target>
+		</trans-unit>
+		<trans-unit id="LABEL_MENU_HELPBTN">
+			<source>Help</source>
+			<target>Help</target>
+		</trans-unit>
+		<trans-unit id="LABEL_MENU_ABOUTBTN">
+			<source>About</source>
+			<target>About</target>
+		</trans-unit>
+		<trans-unit id="LABEL_MENU_MENUBTN">
+			<source>Menu</source>
+			<target>Menu</target>
+		</trans-unit>
+		<trans-unit id="LABEL_POPUP_CLOSEBTN">
+			<source>Close</source>
+			<target>Close</target>
+		</trans-unit>
+		<trans-unit id="LABEL_POPUP_ABOUT_TITLE">
+			<source>About SokoNyan</source>
+			<target>About SokoNyan</target>
+		</trans-unit>
+		<trans-unit id="LABEL_POPUP_ABOUT_DESC">
+			<source>SokoNyan has been released by<br/>MILLIERE Dorian<br/> and<br/> PEREIRA-RAMOS Jordan<br/>both student in Game Desgin and Programming<br/> at ISART Digital</source>
+			<target>SokoNyan has been released by<br/>MILLIERE Dorian<br/> and<br/> PEREIRA-RAMOS Jordan<br/>both student in Game Desgin and Programming<br/> at ISART Digital</target>
+		</trans-unit>
+		<trans-unit id="LABEL_POPUP_OPTIONS_TITLE">
+			<source>Options</source>
+			<target>Options</target>
+		</trans-unit>
+		<trans-unit id="LABEL_POPUP_OPTIONS_GLOBAL">
+			<source>General</source>
+			<target>General</target>
+		</trans-unit>
+		<trans-unit id="LABEL_POPUP_OPTIONS_MUSIC">
+			<source>Musics</source>
+			<target>Musics</target>
+		</trans-unit>
+		<trans-unit id="LABEL_POPUP_OPTIONS_SFX">
+			<source>Effects</source>
+			<target>Effects</target>
+		</trans-unit>
+		<trans-unit id="LABEL_POPUP_OPTIONS_VOLUME">
+			<source>Volume</source>
+			<target>Volume</target>
+		</trans-unit>
+		<trans-unit id="LABEL_POPUP_OPTIONS_DESCTITLE">
+			<source>Choose your language</source>
+			<target>Choose your language</target>
+		</trans-unit>
+		<trans-unit id="LABEL_POPUP_LEVELSELECT_DESCTITLE">
+			<source>Choose your level</source>
+			<target>Choose your level</target>
+		</trans-unit>
+		<trans-unit id="LABEL_POPUP_WRONGPASSWORD_TITLE">
+			<source>Error</source>
+			<target>Error</target>
+		</trans-unit>
+		<trans-unit id="LABEL_POPUP_WRONGPASSWORD_DESC">
+			<source>Wrong password or <br/>this account is already created</source>
+			<target>Wrong password or <br/>this account is already created</target>
+		</trans-unit>
+		<trans-unit id="LABEL_POPUP_GOODPASSWORD_TITLE">
+			<source>Welcome %name% !</source>
+			<target>Welcome %name% !</target>
+		</trans-unit>
+		<trans-unit id="LABEL_POPUP_GOODPASSWORD_DESC">
+			<source>you'r now connected.</source>
+			<target>you'r now connected.</target>
+		</trans-unit>
+		<trans-unit id="LABEL_POPUP_ACCOUNTCREATED_TITLE">
+			<source>Welcome %name% !</source>
+			<target>Welcome %name% !</target>
+		</trans-unit>
+		<trans-unit id="LABEL_POPUP_ACCOUNTCREATED_DESC">
+			<source>you'r account has been created.</source>
+			<target>you'r account has been created.</target>
+		</trans-unit>
+		<trans-unit id="LABEL_POPUP_NEEDPASSWORDANDLOGIN_TITLE">
+			<source>Error !</source>
+			<target>Error !</target>
+		</trans-unit>
+		<trans-unit id="LABEL_POPUP_NEEDPASSWORDANDLOGIN_DESC">
+			<source>You need to enter :<br/>you'r login and you'r password</source>
+			<target>You need to enter :<br/>you'r login and you'r password</target>
+		</trans-unit>
+		<trans-unit id="LABEL_HUD_ACTION_TITLE">
+			<source>Action</source>
+			<target>Action</target>
+		</trans-unit>
+		<trans-unit id="LABEL_HUD_CAPACITE_TITLE">
+			<source>Capacities</source>
+			<target>Capacities</target>
+		</trans-unit>
+		<trans-unit id="LABEL_HUD_EMPTYSKILL">
+			<source>Empty</source>
+			<target>Empty</target>
+		</trans-unit>
+		<trans-unit id="LABEL_HELP_TITLE_SIMPLE_RULES">
+			<source>Basic rules of <br/>simple Sokoban</source>
+			<target>Basic rules of <br/>simple Sokoban</target>
+		</trans-unit>
+		<trans-unit id="LABEL_HELP_TITLE_MAIN_FEATURE">
+			<source>Special ability<br/>of SokoNyan</source>
+			<target>Special ability<br/>of SokoNyan</target>
+		</trans-unit>
+		<trans-unit id="LABEL_HELP_LITTLE_0_RULES">
+			<source>Tap to<br/>move</source>
+			<target>Tap to<br/>move</target>
+		</trans-unit>
+		<trans-unit id="LABEL_HELP_LITTLE_1_RULES">
+			<source>Tap the jam<br/>to push it</source>
+			<target>Tap the jam<br/>to push it</target>
+		</trans-unit>
+		<trans-unit id="LABEL_HELP_LITTLE_2_RULES">
+			<source>You need to<br/>place the jam in<br/>the goal</source>
+			<target>You need to<br/>place the jam in<br/>the goal</target>
+		</trans-unit>
+		<trans-unit id="LABEL_HELP_LITTLE_3_RULES">
+			<source>Tap the<br/>wall to eat</source>
+			<target>Tap the<br/>wall to eat</target>
+		</trans-unit>
+		<trans-unit id="LABEL_HELP_LITTLE_4_RULES">
+			<source>You<br/>did it !</source>
+			<target>You<br/>did it !</target>
+		</trans-unit>
+		<trans-unit id="LABEL_MENU_RESETBTN">
+			<source>Reset</source>
+			<target>Reset</target>
+		</trans-unit>
+		<trans-unit id="LABEL_MENU_UNDOBTN">
+			<source>Undo</source>
+			<target>Undo</target>
+		</trans-unit>
+		<trans-unit id="LABEL_MENU_REDOBTN">
+			<source>Redo</source>
+			<target>Redo</target>
+		</trans-unit>
+		<trans-unit id="LABEL_POPUP_HIGHSCORE_NORANK">
+			<source>Not yet rated.</source>
+			<target>Not yet rated.</target>
+		</trans-unit>
+		<trans-unit id="LABEL_POPUP_HIGHSCORE_TITLE">
+			<source>HIGH SCORE</source>
+			<target>HIGH SCORE</target>
+		</trans-unit>
+		<trans-unit id="LABEL_HUD_PAR_TITLE">
+			<source>Par : </source>
+			<target>Par : </target>
+		</trans-unit>
+		<trans-unit id="LABEL_YOUR_SCORE">
+			<source>. Your score : </source>
+			<target>. Your score : </target>
+		</trans-unit>
+	</body>
+	</file>
+</xliff>

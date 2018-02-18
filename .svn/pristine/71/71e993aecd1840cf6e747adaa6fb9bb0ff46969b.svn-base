@@ -1,0 +1,108 @@
+/**
+ * Ecran de Menu
+ */
+define([
+	"src/utils/assetsmanager/SpriteManager"
+],
+function (
+	SpriteManager
+) {
+	var Menu = function () {
+
+	}
+
+
+	/**
+	 * Affiche le contenu dans gameContainer
+	 */
+	Menu.prototype.init = function () {
+		$("#screenContainer").append("<div id='Menu'></div>");
+		$("#Menu").append("<div class='loginBackground'></div>");
+		$("#Menu").append("<div class='menuBackground'></div>");
+
+		$("#Menu").append("<div id='Play' class='buttonMenu'>Play</div>");
+		$("#menu #Play").css("background-image", "url(" + SpriteManager.get("buttonMenuStatic").src + ")");
+
+		$("#menu #Play").hover(function() {
+			$( this ).css("background-image", "url(" + SpriteManager.get("buttonMenuSurvol").src + ")");
+			$("#menu #Play").css("background-repeat", "no-repeat");
+		}, function() {
+			$( this ).css("background-image", "url(" + SpriteManager.get("buttonMenuStatic").src + ")");
+		});
+
+		$("#menu #Play").mousedown(function() {
+			$("#menu #Play").css("background-image", "url(" + SpriteManager.get("buttonMenuPress").src + ")");
+			$("#menu #Play").css("padding-top", 12);
+		});
+
+		$("#menu #Play").mouseup(function() {
+			$("#menu #Play").css("background-image", "url(" + SpriteManager.get("buttonMenuStatic").src + ")");
+			$("#menu #Play").css("padding-top", 0);
+		});
+
+
+		$("#Menu").append("<div id='HighScore' class='buttonMenu'>HighScore</div>");
+		$("#menu #HighScore").css("background-image", "url(" + SpriteManager.get("buttonMenuStatic").src + ")");
+
+		$("#menu #HighScore").hover(function() {
+			$( this ).css("background-image", "url(" + SpriteManager.get("buttonMenuSurvol").src + ")");
+			$("#menu #HighScore").css("background-repeat", "no-repeat");
+		}, function() {
+			$( this ).css("background-image", "url(" + SpriteManager.get("buttonMenuStatic").src + ")");
+		});
+
+		$("#menu #HighScore").mousedown(function() {
+			$("#menu #HighScore").css("background-image", "url(" + SpriteManager.get("buttonMenuPress").src + ")");
+			$("#menu #HighScore").css("padding-top", 12);
+		});
+
+		$("#menu #HighScore").mouseup(function() {
+			$("#menu #HighScore").css("background-image", "url(" + SpriteManager.get("buttonMenuStatic").src + ")");
+			$("#menu #HighScore").css("padding-top", 0);
+		});
+
+
+		$("#Menu").append("<div id='Help' class='buttonMenu'>Help</div>");
+		$("#menu #Help").css("background-image", "url(" + SpriteManager.get("buttonMenuStatic").src + ")");
+
+		$("#menu #Help").hover(function() {
+			$( this ).css("background-image", "url(" + SpriteManager.get("buttonMenuSurvol").src + ")");
+			$("#menu #Help").css("background-repeat", "no-repeat");
+		}, function() {
+			$( this ).css("background-image", "url(" + SpriteManager.get("buttonMenuStatic").src + ")");
+		});
+
+		$("#menu #Help").mousedown(function() {
+			$("#menu #Help").css("background-image", "url(" + SpriteManager.get("buttonMenuPress").src + ")");
+			$("#menu #Help").css("padding-top", 12);
+		});
+
+		$("#menu #Help").mouseup(function() {
+			$("#menu #Help").css("background-image", "url(" + SpriteManager.get("buttonMenuStatic").src + ")");
+			$("#menu #Help").css("padding-top", 0);
+		});
+
+		$("#Menu").append("<div id='About' class='buttonMenu'>About</div>");
+		$("#menu #About").css("background-image", "url(" + SpriteManager.get("buttonMenuStatic").src + ")");
+
+		$("#menu #About").hover(function() {
+			$( this ).css("background-image", "url(" + SpriteManager.get("buttonMenuSurvol").src + ")");
+			$("#menu #About").css("background-repeat", "no-repeat");
+		}, function() {
+			$( this ).css("background-image", "url(" + SpriteManager.get("buttonMenuStatic").src + ")");
+		});
+
+		$("#menu #About").mousedown(function() {
+			$("#menu #About").css("background-image", "url(" + SpriteManager.get("buttonMenuPress").src + ")");
+			$("#menu #About").css("padding-top", 12);
+		});
+
+		$( "#menu #About").mouseup(function() {
+			$("#menu #About").css("background-image", "url(" + SpriteManager.get("buttonMenuStatic").src + ")");
+			$("#menu #About").css("padding-top", 0);
+		});
+	}
+
+
+	return new Menu();
+});

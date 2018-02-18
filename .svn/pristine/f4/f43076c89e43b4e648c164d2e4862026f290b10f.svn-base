@@ -1,0 +1,77 @@
+define([
+	"src/utils/Config"
+],
+function (
+	Config
+) {
+	/**
+	 * Configuration du jeu.
+	 */
+	var Config = function () {
+		/**
+		 * Information du jeu
+		 */
+		this.version = "1.0.0";
+		this.local = true; // Si les requête se font en local ou vers le serveur web.
+		this.language = "en";
+		this.availableLanguage = [
+			"de",
+			"en",
+			"es",
+			"fr",
+			"it",
+			"pl"
+		];
+
+		var localhost = 'http://localhost/sokoban/localization/';
+		var webhost = 'http://sokonyan.delfisakura.com/bin/localization/';
+		this.xliffPath = this.local ? localhost : webhost; // Chemin vers les fichiers de langues xliff
+
+		/**
+		 * Reglage écran
+		 */
+		this.fullScreen = false;
+		this.ratio = 16 / 9;
+		this.WINDOW_WIDTH = 1136; // Si fullScreen = false
+		this.WINDOW_HEIGHT = 640; // *
+		this.SAFE_ZONE_WIDTH = 2048;
+		this.SAFE_ZONE_HEIGHT = 1366;
+
+		/*
+		 * Outils de debug
+		 */
+		this.debug = true; // Active/Desactive les log dans la console
+		this.guiDebug = true; // Active/Desactive la gui de debugging
+		this.fps = false; // Active/Desactive le compteur de fps
+		this.ms = false; // Active/Desactive le compteur de ms par frame
+		this.showHitbox = false; // Active/Desactive l'affichage des hitbox
+		this.showPivot = false; // Active/Desactive l'affichage des points de pivots
+
+
+		/**
+		 * Jeu
+		 */
+
+		// Nombre de niveau au total
+		this.totalLevel = 15;
+
+		// Taille de la map
+		this.mapSizeX = 11;
+		this.mapSizeY = 11;
+		this.mapWidth = 61;
+		this.mapHeight = 61;
+
+		// Effet chargement de la map
+		this.fadeInMin = 0;
+		this.fadeInMax = 400;
+
+		// UI Manager
+		this.changeScreenFadeDelay = 500; // Temps de transition entre 2 screen
+
+		// Vitesse de translation d'une case à une autre
+		this.translationSpeed = 15;
+	}
+
+
+	return new Config();
+});

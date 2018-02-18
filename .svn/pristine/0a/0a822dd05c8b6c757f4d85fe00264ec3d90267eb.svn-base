@@ -1,0 +1,31 @@
+body {
+	background-color: white;
+}
+
+#gameContainer {
+	position: absolute;
+	top : 0px;
+	left : 0px;
+}
+
+
+.flag {
+	position: absolute;
+	top: 10px;
+	left: 10px;
+	width: 30px;
+	height: 90px;
+}
+
+.blue {
+	background-color: blue;
+}
+
+.white {
+	left:40px;
+}
+
+.red {
+	left:70px;
+	background-color: red;
+}

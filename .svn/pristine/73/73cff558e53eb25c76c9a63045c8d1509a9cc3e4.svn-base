@@ -1,0 +1,153 @@
+/**
+ * Caisse du sokoban
+ */
+define([
+	"jquery",
+	"src/game/game/box/BoxManager",
+	"src/utils/assetsmanager/SpriteManager",
+	"src/utils/math/Vector2",
+	"src/utils/Config"
+],
+function (
+	$,
+	BoxManager,
+	SpriteManager,
+	Vector2,
+	Config
+) {
+	var Box = function (x, y, isOnGoal, MapManager) {
+		this.MapManager = MapManager;
+		BoxManager.list.push(this);
+
+		this.modifier = {
+			currentCell: [
+				[this.MapManager.cell.box, this.MapManager.cell.floorRed],
+				[this.MapManager.cell.boxOnGoal, this.MapManager.cell.goal]
+			],
+			nextCell: [
+				[this.MapManager.cell.floorRed, this.MapManager.cell.box],
+				[this.MapManager.cell.goal, this.MapManager.cell.boxOnGoal]
+			]
+		}
+
+		
+		this.position = new Vector2(x, y);
+		this.id = Math.floor(Math.random() * 10000000);
+		this.translateOffset = new Vector2(0, 0);
+
+		var boxSkin = "box";
+		if (isOnGoal) boxSkin = "boxOnGoal";
+
+		$("#mapContainer").append("<div id='box" + this.id + "' class='box'></div>");
+		$("#box" + this.id).css("background-image", "url(" + SpriteManager.get(boxSkin).src + ")")
+							 .css("width", Config.mapWidth)
+						 	 .css("height", Config.mapHeight);
+		$('#box' + this.id).hide();
+		setTimeout((function (id) {
+			return function () {
+				$('#box' + id).fadeIn(400);
+			};
+		})(this.id), Config.fadeInMin + Math.random() * (Config.fadeInMax - Config.fadeInMin));
+
+	}
+
+
+	Box.prototype.update = function () {
+		$("#box" + this.id).fadeIn( Config.fadeInMin + Math.random() * (Config.fadeInMax - Config.fadeInMin) );
+		$("#box" + this.id).css("left", this.translateOffset.x + Config.mapWidth * this.position.x)
+						   .css("top", this.translateOffset.y + Config.mapHeight * this.position.y);
+
+		// Update translation pour les mouvement fluide
+		if (Math.abs(this.translateOffset.x) > Config.translationSpeed + 1) {
+			this.translateOffset.x += Config.translationSpeed * this.translateOffset.x / Math.abs(this.translateOffset.x) * -1;
+		} else {
+			this.translateOffset.x = 0;
+		}
+		if (Math.abs(this.translateOffset.y) > Config.translationSpeed + 1) {
+			this.translateOffset.y += Config.translationSpeed * this.translateOffset.y / Math.abs(this.translateOffset.y) * -1;
+		} else {
+			this.translateOffset.y = 0;
+		}
+	}
+
+
+	/**
+	 * Bouge la caisse dans la direction donné.
+	 * @return true si la caisse a bougé sinon false
+	 */
+	Box.prototype.move = function (dir) {
+		if (Math.abs(this.translateOffset.x) + Math.abs(this.translateOffset.y) == 0) {
+			var map = this.MapManager.currentMap;
+			var xOffset = 0;
+			var yOffset = 0;
+
+			switch(dir){
+				case "left":
+					xOffset = -1;
+					break;
+				case "right":
+					xOffset = 1;
+					break;
+				case "up":
+					yOffset = -1;
+					break;
+				case "down":
+					yOffset = 1;
+					break;
+				default:
+					console.error("Mauvaise direction ! Accepté : left, right, up, down. Entré : " + dir)
+					break;
+			}
+
+			var canMove = false;
+			var currentCellId = this.MapManager.getCellId(this.position.x, this.position.y);
+			var currentCellValue = this.MapManager.getCellValue(this.position.x, this.position.y);
+			var nextCellId = this.MapManager.getCellId(this.position.x + xOffset, this.position.y + yOffset);
+			var nextCellValue = this.MapManager.getCellValue(this.position.x + xOffset, this.position.y + yOffset);
+
+
+			for (var i = 0; i < this.modifier.nextCell.length; i++) {
+				if (this.modifier.nextCell[i][0] == nextCellValue) {
+					map[nextCellId] = this.modifier.nextCell[i][1]
+					canMove = true;
+				}
+			};
+
+			if (!canMove) return false;
+
+			for (var i = 0; i < this.modifier.currentCell.length; i++) {
+				if (this.modifier.currentCell[i][0] == currentCellValue) {
+					map[currentCellId] = this.modifier.currentCell[i][1];
+				}
+			};
+
+			var boxSkin = "box";
+			if (nextCellValue == this.MapManager.cell.goal) boxSkin = "boxOnGoal";
+			$("#box" + this.id).css("background-image", "url(" + SpriteManager.get(boxSkin).src + ")")
+			
+			this.position.x += xOffset;
+			this.position.y += yOffset;
+			this.translateOffset.x = xOffset * Config.mapWidth * -1;
+			this.translateOffset.y = yOffset * Config.mapHeight * -1;
+
+			//SoundManager.play("meow" + Math.floor(Math.random() * 15))
+
+			return true;
+		}
+		return false;
+	}
+
+
+	Box.prototype.destroy = function () {
+		setTimeout((function (id) {
+			return function () {
+				$('#box' + id).fadeOut(400, function () {
+					$('#box' + id).remove();
+				});
+			};
+		})(this.id), Config.fadeInMin + Math.random() * (Config.fadeInMax - Config.fadeInMin));
+	}
+
+
+	return Box;
+});

@@ -1,0 +1,196 @@
+/**
+ * Feuille de traduction EN->DE
+ */
+define([
+],
+function (
+) {
+	return {
+		source: "en",
+		target: "de",
+		LABEL_LOADINGSCREEN_LOADING: {
+			source: "Loading the game",
+			target: "Laden des Spiels"
+		},
+		LABEL_LOGINSCREEN_LOGINTEXT: {
+			source: "Log in :",
+			target: "Einloggen :"
+		},
+		LABEL_LOGINSCREEN_LOGINTEXTFIELD: {
+			source: "Account*",
+			target: "Konto*"
+		},
+		LABEL_LOGINSCREEN_PASSTEXTFIELD: {
+			source: "Password*",
+			target: "Passwort*"
+		},
+		LABEL_LOGINSCREEN_CONNECTBTN: {
+			source: "Connect",
+			target: "verbinden Sie"
+		},
+		LABEL_LOGINSCREEN_TIP: {
+			source: "*If you don't have an account, it will be automatically created.",
+			target: "*Wenn Sie noch kein Benutzerkonto haben , wird es automatisch erstellt."
+		},
+		LABEL_MENU_PLAYBTN: {
+			source: "Play",
+			target: "Spielen"
+		},
+		LABEL_MENU_HIGHSCOREBTN: {
+			source: "Highscore",
+			target: "Highscores"
+		},
+		LABEL_MENU_OPTIONSBTN: {
+			source: "Options",
+			target: "Optionen"
+		},
+		LABEL_MENU_HELPBTN: {
+			source: "Help",
+			target: "Hilfe"
+		},
+		LABEL_MENU_ABOUTBTN: {
+			source: "About",
+			target: "über"
+		},
+		LABEL_MENU_MENUBTN: {
+			source: "Menu",
+			target: "Menü"
+		},
+		LABEL_MENU_RESETBTN: {
+			source: "Reset",
+			target: "rücksetzen"
+		},
+		LABEL_MENU_UNDOBTN: {
+			source: "Undo",
+			target: "Rückgängig Machen"
+		},
+		LABEL_MENU_REDOBTN: {
+			source: "Redo",
+			target: "wiederholen"
+		},
+		LABEL_POPUP_CLOSEBTN: {
+			source: "Close",
+			target: "Zu Schließen"
+		},
+		LABEL_POPUP_ABOUT_TITLE: {
+			source: "About SokoNyan",
+			target: "Über SokoNyan"
+		},
+		LABEL_POPUP_ABOUT_DESC: {
+			source: "SokoNyan has been released by<br />MILLIERE Dorian<br /> &<br /> PEREIRA-RAMOS Jordan<br />both student in Game Desgin & Programming<br /> at ISART Digital",
+			target: "SokoNyan hat-wurde durch frei<br />MILLIERE Dorian<br /> &<br /> PEREIRA-RAMOS Jordan<br />Sowohl Schüler in Spiel Desgin & Programmierung<br /> bei ISART Digital"
+		},
+		LABEL_POPUP_OPTIONS_TITLE: {
+			source: "Options",
+			target: "Optionen"
+		},
+		LABEL_POPUP_OPTIONS_GLOBAL: {
+			source: "General",
+			target: "General"
+		},
+		LABEL_POPUP_OPTIONS_MUSIC: {
+			source: "Musics",
+			target: "Musik"
+		},
+		LABEL_POPUP_OPTIONS_SFX: {
+			source: "Effects",
+			target: "Effekte"
+		},
+		LABEL_POPUP_OPTIONS_VOLUME: {
+			source: "Volume",
+			target: "Volumen"
+		},
+		LABEL_POPUP_OPTIONS_DESCTITLE: {
+			source: "Choose your language",
+			target: "Wählen Sie Ihre Sprache"
+		},
+		LABEL_POPUP_LEVELSELECT_DESCTITLE: {
+			source: "Choose your level",
+			target: "Wählen Sie Ihre Ebene"
+		},
+		LABEL_POPUP_WRONGPASSWORD_TITLE: {
+			source: "Error",
+			target: "Fehler"
+		},
+		LABEL_POPUP_WRONGPASSWORD_DESC: {
+			source: "Wrong password or <br />this account is already created",
+			target: "Falsche Passwort oder <br />dieses Konto bereits erstellt"
+		},
+		LABEL_POPUP_GOODPASSWORD_TITLE: {
+			source: "Welcome %name% !",
+			target: "Willkommen %name% !"
+		},
+		LABEL_POPUP_GOODPASSWORD_DESC: {
+			source: "You'r now connected.",
+			target: "Sie sind jetzt verbunden."
+		},
+		LABEL_POPUP_ACCOUNTCREATED_TITLE: {
+			source: "Welcome %name% !",
+			target: "Willkommen %name% !"
+		},
+		LABEL_POPUP_ACCOUNTCREATED_DESC: {
+			source: "You'r account has been created.",
+			target: "Ihr Konto erstellt wurde."
+		},
+		LABEL_POPUP_NEEDPASSWORDANDLOGIN_TITLE: {
+			source: "Error !",
+			target: "Fehler !"
+		},
+		LABEL_POPUP_NEEDPASSWORDANDLOGIN_DESC: {
+			source: "You need to enter :<br />you'r login and you'r password",
+			target: "Sie müssen ein :<br />Ihren Benutzernamen und Ihr Passwort ein"
+		},
+		LABEL_POPUP_HIGHSCORE_TITLE: {
+			source: "HIGH SCORE",
+			target: "HIGH SCORES"
+		},
+		LABEL_POPUP_HIGHSCORE_NORANK: {
+			source: "Not yet rated.",
+			target: "Noch nicht bewertet."
+		},
+		LABEL_HUD_ACTION_TITLE: {
+			source: "Action",
+			target: "Aktion"
+		},
+		LABEL_HUD_CAPACITE_TITLE: {
+			source: "Capacities",
+			target: "Kapazitäten"
+		},
+		LABEL_HUD_EMPTYSKILL: {
+			source: "Empty",
+			target: "leer"
+		},
+		LABEL_HELP_TITLE_SIMPLE_RULES: {
+			source: "Basic rules of </br>simple Sokoban",
+			target: "Grundregeln</br>einfache Sokoban"
+		},
+		LABEL_HELP_TITLE_MAIN_FEATURE: {
+			source: "Special ability</br>of SokoNyan",
+			target: "Spezialfähigkeit</br>von SokoNyan"
+		},
+		LABEL_HELP_LITTLE_0_RULES: {
+			source: "Tap to</br>move",
+			target: "Tippen Sie,</br>um zu bewegen"
+		},
+		LABEL_HELP_LITTLE_1_RULES: {
+			source: "Tap the jam</br>to push it",
+			target: "Tippen Sie auf die Marmelade</br>zu schieben"
+		},
+		LABEL_HELP_LITTLE_2_RULES: {
+			source: "You need to</br>place the jam in</br>the goal",
+			target: "Sie müssen</br>Legen Sie den Papierstau in</br>das ziel"
+		},
+		LABEL_HELP_LITTLE_3_RULES: {
+			source: "Tap the</br>wall to eat",
+			target: "Tippen Sie auf die</br>Wand zu essen"
+		},
+		LABEL_HELP_LITTLE_4_RULES: {
+			source: "You</br>did it !",
+			target: "Passage veröffentlicht"
+		},
+		LABEL_HUD_PAR_TITLE: {
+			source: "Par : ",
+			target: "Von : "
+		}
+	};
+});

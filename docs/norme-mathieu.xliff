@@ -1,0 +1,39 @@
+<xliff version="1.2">
+	<file original="" source-language="en-US" target-language="en-US">
+	<header></header>
+	<body>
+		<trans-unit id="LABEL_PLAY">
+			<source>Play</source>
+			<target>Play</target>
+		</trans-unit>
+		<trans-unit id="LABEL_MENU">
+			<source>Menu</source>
+			<target>Menu</target>
+		</trans-unit>
+		<trans-unit id="LABEL_RETRY">
+			<source>Retry</source>
+			<target>Retry</target>
+		</trans-unit>
+		<trans-unit id="LABEL_LEVEL">
+			<source>Level</source>
+			<target>Level</target>
+		</trans-unit>
+		<trans-unit id="HELP_DESCR_GAME">
+			<source>Sokoban is a puzzle game that puts the player in the shoes of a handler in an unreasonably crowded and quirky warehouse </source>
+			<target>Sokoban is a puzzle game that puts the player in the shoes of a handler in an unreasonably crowded and quirky warehouse </target>
+		</trans-unit>
+		<trans-unit id="HELP_HOWTOPLAY1">
+			<source>The player can move his character and push boxes</source>
+			<target>The player can move his character and push boxes</target>
+		</trans-unit>
+		<trans-unit id="HELP_HOWTOPLAY2">
+			<source>The player can move only one box at a time</source>
+			<target>The player can move only one box at a time</target>
+		</trans-unit>
+		<trans-unit id="HELP_HOWTOPLAY3">
+			<source>The goal is to get each box on a target box</source>
+			<target>The goal is to get each box on a target box</target>
+		</trans-unit>
+	</body>
+	</file>
+</xliff>

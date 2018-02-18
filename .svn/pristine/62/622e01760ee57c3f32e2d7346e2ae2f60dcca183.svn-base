@@ -1,0 +1,15 @@
+/**
+ * Tout ce qui concerne les paramètres du comptes.
+ * Progression du joueur etc
+ */
+define([
+],
+function (
+) {
+	var Account = function () {
+		this.progress = {};
+	}
+
+
+	return new Account();
+});

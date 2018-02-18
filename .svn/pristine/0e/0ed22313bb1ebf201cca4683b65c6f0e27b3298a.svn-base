@@ -1,0 +1,103 @@
+/**
+ * Caisse du sokoban
+ */
+define([
+	"jquery",
+	"src/game/game/crate/CrateManager",
+	"src/utils/assetsmanager/SpriteManager",
+	"src/utils/math/Vector2",
+	"src/utils/Config"
+],
+function (
+	$,
+	CrateManager,
+	SpriteManager,
+	Vector2,
+	Config
+) {
+	var Crate = function (x, y, MapManager) {
+		this.MapManager = MapManager;
+		CrateManager.list.push(this);
+		this.position = new Vector2(x, y);
+		this.id = Math.floor(Math.random() * 10000000);
+		$("#mapContainer").append("<div id='crate" + this.id + "' class='crate'></div>");
+		$("#crate" + this.id).css("background-image", "url(" + SpriteManager.get("caisse").src + ")")
+							 .css("width", Config.mapWidth)
+						 	 .css("height", Config.mapHeight);
+		$('#crate' + this.id).hide();
+		setTimeout((function (id) {
+			return function () {
+				$('#crate' + id).fadeIn(400);
+			};
+		})(this.id), Config.fadeInMin + Math.random() * (Config.fadeInMax - Config.fadeInMin));
+	}
+
+
+	Crate.prototype.update = function () {
+		$("#crate" + this.id).fadeIn( Config.fadeInMin + Math.random() * (Config.fadeInMax - Config.fadeInMin) );
+		$("#crate" + this.id).css("left", Config.mapWidth * this.position.x)
+							 .css("top", Config.mapHeight * this.position.y);
+	}
+
+
+	/**
+	 * Bouge la caisse dans la direction donné.
+	 * @return true si la caisse a bougé sinon false
+	 */
+	Crate.prototype.move = function (dir) {
+		var currentMap = this.MapManager.currentMap;
+		var xOffset = 0;
+		var yOffset = 0;
+		switch(dir) {
+			case "left":
+				xOffset = -1;
+				break;
+			case "right":
+				xOffset = 1;
+				break;
+			case "up":
+				yOffset = -1;
+				break;
+			case "down":
+				yOffset = 1;
+				break;
+			default:
+				console.error("Mauvaise direction ! Accepté : left, right, up, down. Entré : " + dir)
+				break;
+		}
+		var cellValue = this.MapManager.getCellValue(this.position.x + xOffset, this.position.y + yOffset);
+		if (cellValue == 1) {
+			var temp = currentMap[MapManager.getCellId(this.position.x, this.position.y)]
+			currentMap[MapManager.getCellId(this.position.x, this.position.y)] = currentMap[MapManager.getCellId(this.position.x + xOffset, this.position.y + yOffset)]
+			currentMap[MapManager.getCellId(this.position.x + xOffset, this.position.y + yOffset)] = temp;
+			this.position.x += xOffset;
+			this.position.y += yOffset;
+			return true;
+		}
+		if (cellValue == 72) {
+			if (currentMap[MapManager.getCellId(this.position.x, this.position.y)] == 66) {
+				currentMap[MapManager.getCellId(this.position.x, this.position.y)] = 72;
+			} else {
+				currentMap[MapManager.getCellId(this.position.x, this.position.y)] = 1;
+			}
+			this.position.x += xOffset;
+			this.position.y += yOffset;
+			return true
+		}
+		return false;
+	}
+
+
+	Crate.prototype.destroy = function () {
+		setTimeout((function (id) {
+			return function () {
+				$('#crate' + id).fadeOut(400, function () {
+					$('#crate' + id).remove();
+				});
+			};
+		})(this.id), Config.fadeInMin + Math.random() * (Config.fadeInMax - Config.fadeInMin));
+	}
+
+
+	return Crate;
+});

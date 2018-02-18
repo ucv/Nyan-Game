@@ -1,0 +1,44 @@
+/**
+ * Class qui permet de récuperer les phrases en fonction de la langue.
+ */
+define([
+	"src/utils/Config",
+	"src/utils/localization/en",
+	"src/utils/localization/fr",
+	"src/utils/localization/de"
+],
+function (
+	Config,
+	en,
+	fr,
+	de
+) {
+	var txt = function () {
+
+	}
+
+
+	/**
+	 * Récupère une phrase en fonction de la langue
+	 */
+	txt.prototype.get = function (labelName) {
+		switch(Config.language){
+			case "en":
+				return en[labelName].target;
+				break;
+			case "fr":
+				return fr[labelName].target;
+				break;
+			case "de":
+				console.log(labelName);
+				return de[labelName].target;
+				break;
+			default:
+				console.error("Language non trouvé.");
+				break;
+		}
+	}
+
+
+	return new txt();
+});

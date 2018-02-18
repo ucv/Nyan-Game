@@ -1,0 +1,106 @@
+body {
+	background-color: white;
+}
+
+/**
+ * Polices
+ */
+@font-face {
+	font-family: 'Fipps';
+	src: url('font/Fipps.otf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+}
+
+#gameContainer {
+	position: absolute;
+	top : 0px;
+	left : 0px;
+}
+
+
+.loadingBackground {
+	position: absolute;
+	height: 640px;
+	width: 1136px;
+	background-image: url(../assets/img/sprite/ui/loadingBackground.png);
+}
+
+.loadingBar {
+	position: absolute;
+	height: 37px;
+	width: 893px;
+	left: 78px;
+	top: 545px;
+	background-image: url(../assets/img/sprite/ui/loadingBar.png);
+}
+
+.loadingCat {
+	position: absolute;
+	height: 87px;
+	width: 141px;
+	left: 945px;
+	top: 500px;
+	background-image: url(../assets/img/sprite/ui/loadingCat.png);
+}
+
+
+.loadingText {
+	font-family:Fipps, sans-serif;
+	font-size: 1.6em;
+	position: absolute;
+	animation: blink 1.5s steps(5, start) infinite;
+ 	-webkit-animation: blink 2s steps(5, start) infinite;
+	left: 370px;
+	top: 370px;
+	text-shadow: 1px 2px 4px #bbb;
+}
+
+@keyframes blink {
+  to {
+    visibility: hidden;
+  }
+}
+@-webkit-keyframes blink {
+  to {
+    visibility: hidden;
+  }
+}
+
+
+.login {
+	font-family:Fipps, sans-serif;
+	font-size: 1.3em;
+	position: absolute;
+	left: 460px;
+	top: 200px;
+	text-shadow: 1px 2px 4px #bbb;
+}
+
+.password {
+	font-family:Fipps, sans-serif;
+	font-size: 1.3em;
+	position: absolute;
+	left: 410px;
+	top: 340px;
+	text-shadow: 1px 2px 4px #bbb;
+}
+
+.loginBackground {
+	position: absolute;
+	height: 640px;
+	width: 1136px;
+	background-image: url(../assets/img/sprite/ui/loginBackground.png);
+}
+
+.textBoxLogin {
+	left: 460px;
+	top: 200px;
+	position: absolute;
+}
+
+.textBoxPassword {
+	left: 410px;
+	top: 340px;
+	position: absolute;
+}

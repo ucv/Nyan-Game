@@ -1,0 +1,23 @@
+/**
+ * Css de HighScore
+ */
+.highScoreTitle {
+    text-align: center;
+    padding-top: 20;
+    font-size: 1.5em;
+}
+
+
+.nameAndScore {
+	text-align: left;
+    font-family:Fipps, sans-serif;
+    font-size: 0.8em;
+    padding-left: 265;
+    position: absolute;
+}
+
+#yourHighScore {
+    text-align: center;
+    padding-top: 310;
+    font-size: 0.9em;
+}

@@ -1,0 +1,47 @@
+/**
+ * Ecran de Login
+ */
+define([
+	"src/utils/assetsmanager/SpriteManager"
+],
+function (
+	SpriteManager
+) {
+	var Login = function () {
+
+	}
+
+
+	/**
+	 * Affiche le contenu dans gameContainer
+	 */
+	Login.prototype.init = function () {
+		$("#screenContainer").append("<div id='Login'></div>");
+		$("#Login").append("<div class='loginBackground'></div>");
+		$("#Login").append("<div class='topDescription'>Veuillez vous connecter :</div>");
+		$("#Login").append("<div><input class='textBoxLogin' type='text' name='login' placeholder='Login*'</input><input class='textBoxPassword' type='password' name='pass' placeholder='Mot de passe*'</input></div>");
+		$("#Login").append("<div class='buttonConnection'>Connexion</div>");
+		$("#login .buttonConnection").css("background-image", "url(" + SpriteManager.get("buttonStatic").src + ")");
+		$( "#login .buttonConnection").hover(function() {
+			$( this ).css("background-image", "url(" + SpriteManager.get("buttonSurvol").src + ")");
+			$("#login .buttonConnection").css("background-repeat", "no-repeat");
+		}, function() {
+			$( this ).css("background-image", "url(" + SpriteManager.get("buttonStatic").src + ")");
+		});
+
+		$( "#login .buttonConnection").mousedown(function() {
+			$("#login .buttonConnection").css("background-image", "url(" + SpriteManager.get("buttonPress").src + ")");
+			$("#login .buttonConnection").css("padding-top", 12);
+		});
+
+		$( "#login .buttonConnection").mouseup(function() {
+			$("#login .buttonConnection").css("background-image", "url(" + SpriteManager.get("buttonStatic").src + ")");
+			$("#login .buttonConnection").css("padding-top", 8);
+		});
+
+		$("#Login").append("<div class='botDescription'>*Si vous n'avez pas encore de compte, il sera créé automatiquement.</div>");
+	}
+
+
+	return new Login();
+});

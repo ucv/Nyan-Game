@@ -1,0 +1,29 @@
+body {
+	background-color: white;
+}
+
+
+/**
+ * Polices
+ */
+@font-face {
+	font-family: 'Fipps';
+	src: url('font/Fipps.otf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+}
+
+
+#gameContainer {
+	position: absolute;
+	background-color: #014479;
+	top : 0px;
+	left : 0px;
+}
+
+
+.tile {
+	position: absolute;
+	background-repeat: no-repeat;
+	background-size: cover;
+}

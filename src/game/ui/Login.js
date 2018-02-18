@@ -1,0 +1,73 @@
+/**
+ * Login screen
+ */
+define([
+	"src/utils/assetsmanager/SpriteManager",
+	"src/utils/assetsmanager/SoundManager",
+	"src/utils/localization/txt",
+	"src/game/server/Account"
+],
+function (
+	SpriteManager,
+	SoundManager,
+	txt,
+	Account
+) {
+	var Login = function () {
+
+	}
+
+
+	/**
+	 * Show content in gameContainer
+	 */
+	Login.prototype.init = function (UIManager) {
+		SoundManager.play("nyan_elevator", true);
+
+		$("#screenContainer").append("<div id='Login'></div>");
+		$("#Login").append("<div class='loginBackground'></div>");
+		$("#Login").append("<div class='topDescription'>" + txt.get("LABEL_LOGINSCREEN_LOGINTEXT") + "</div>");
+		$("#Login").append("<div><input class='textBoxLogin' type='text' name='login' id='nameField' placeholder='" + txt.get("LABEL_LOGINSCREEN_LOGINTEXTFIELD") + "'</input><input class='textBoxPassword' type='password' name='pass' id='passField' placeholder='" + txt.get("LABEL_LOGINSCREEN_PASSTEXTFIELD") + "'</input></div>");
+		$("#Login").append("<div class='buttonConnection'>" + txt.get("LABEL_LOGINSCREEN_CONNECTBTN") + "</div>");
+		$("#login .buttonConnection").css("background-image", "url(" + SpriteManager.get("buttonLoginStatic").src + ")");
+		$( "#login .buttonConnection").hover(function() {
+			$( this ).css("background-image", "url(" + SpriteManager.get("buttonLoginSurvol").src + ")");
+			$("#login .buttonConnection").css("background-repeat", "no-repeat");
+			SoundManager.play("buttonHover");
+		}, function() {
+			$( this ).css("background-image", "url(" + SpriteManager.get("buttonLoginStatic").src + ")");
+		});
+
+		$( "#login .buttonConnection").mousedown(function() {
+			$("#login .buttonConnection").css("background-image", "url(" + SpriteManager.get("buttonLoginPress").src + ")");
+			$("#login .buttonConnection").css("padding-top", 12);
+		});
+
+		var connectTrigger = (function (Account) {
+			return function () {
+				$("#login .buttonConnection").css("background-image", "url(" + SpriteManager.get("buttonLoginStatic").src + ")");
+				$("#login .buttonConnection").css("padding-top", 8);
+				SoundManager.play("meow14");
+
+				var name = $("#nameField").val();
+				var password = $("#passField").val();
+				Account.connect(name, password);
+				$('#passField').unbind("enterKey");
+			}
+		})(Account);
+
+		$( "#login .buttonConnection").mouseup(connectTrigger);
+
+		$('#passField').bind("enterKey", connectTrigger);
+		$('#passField').keyup(function(e){
+			if(e.keyCode == 13) {
+				$(this).trigger("enterKey");
+			}
+		});
+
+		$("#Login").append("<div class='botDescription'>" + txt.get("LABEL_LOGINSCREEN_TIP") + "</div>");
+	}
+
+
+	return new Login();
+});

@@ -1,0 +1,22 @@
+/**
+ * Class qui permet de charger les maps
+ */
+define([
+],
+function (
+) {
+	var MapManager = function () {
+
+	}
+
+
+	/**
+	 * Charge une map et l'affiche sur le jeu
+	 */
+	MapManager.prototype.loadMap = function (name) {
+		
+	}
+
+
+	return new MapManager();
+});

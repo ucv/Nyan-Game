@@ -1,0 +1,38 @@
+/*
+ * Initialise le jeu, lance tout les loader et démarre la gameLoop
+ * To do:
+ * -SceneManager
+ * -Affichage hitbox + point de pivot
+ * -Gestion des langues
+ * -fonction aabb, hitestobject
+ */
+define([
+	"src/utils/debug/Debug",
+	"src/game/game/GameManager",
+	"src/utils/loader/SpriteLoader",
+	"src/utils/loader/SoundLoader"
+],
+function (
+	Debug,
+	GameManager,
+	SpriteLoader,
+	SoundLoader
+) {
+	var Game = function () {
+
+	}
+
+
+	/*
+	 * Initialise le jeu, lance tous les loaders puis démarre la gameloop
+	 */
+	Game.prototype.init = function () {
+		Debug.success("Game initialised.");
+		SpriteLoader.init();
+		SoundLoader.init();
+		GameManager.init();
+	}
+
+
+	return new Game();
+});

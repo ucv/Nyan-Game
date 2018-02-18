@@ -1,0 +1,52 @@
+/**
+ * Css de la page loadScreen
+ */
+.loadingBackground {
+	position: absolute;
+	height: 640px;
+	width: 1136px;
+}
+
+
+.loadingBar {
+	position: absolute;
+	height: 37px;
+	width: 893px;
+	left: 78px;
+	top: 545px;
+}
+
+
+.loadingCat {
+	position: absolute;
+	height: 87px;
+	width: 141px;
+	left: 945px;
+	top: 510px;
+	background-size: 100% 100%;
+}
+
+
+.loadingText {
+	position: absolute;
+	font-family:Fipps, sans-serif;
+	font-size: 1.5em;
+	animation: blink 1.5s steps(5, start) infinite;
+ 	-webkit-animation: blink 2s steps(5, start) infinite;
+	left: 395px;
+	top: 370px;
+	text-shadow: 1px 2px 4px #bbb;
+}
+
+
+@keyframes blink {
+  to {
+    visibility: hidden;
+  }
+}
+
+@-webkit-keyframes blink {
+  to {
+    visibility: hidden;
+  }
+}

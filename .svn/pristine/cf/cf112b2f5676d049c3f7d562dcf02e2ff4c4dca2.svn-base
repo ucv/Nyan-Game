@@ -1,0 +1,17 @@
+<!DOCTYPE>
+<html>
+<head>
+	<title>SokoNyan</title>
+	<link href="css/style.css" rel="stylesheet" media="all" type="text/css"> 
+	<link href="css/login.css" rel="stylesheet" media="all" type="text/css"> 
+	<link href="css/menu.css" rel="stylesheet" media="all" type="text/css">
+	<link href="css/win.css" rel="stylesheet" media="all" type="text/css">
+	<link href="css/about.css" rel="stylesheet" media="all" type="text/css"> 
+	<link href="css/loadScreen.css" rel="stylesheet" media="all" type="text/css"> 
+	<link href="css/gameStage.css" rel="stylesheet" media="all" type="text/css"> 
+	<script type="text/javascript" src="libs/requirejs/require.js" data-main="requireConfig.js"></script>
+</head>
+<body>
+	<div id="gameContainer"></div>
+<body>
+</html>

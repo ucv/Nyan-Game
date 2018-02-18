@@ -1,0 +1,11 @@
+<!DOCTYPE>
+<html>
+<head>
+	<title>New project</title>
+	<link href="css/style.css" rel="stylesheet" media="all" type="text/css"> 
+	<script type="text/javascript" src="libs/requirejs/require.js" data-main="requireConfig.js"></script>
+</head>
+<body>
+	<div id="gameContainer"></div>
+<body>
+</html>

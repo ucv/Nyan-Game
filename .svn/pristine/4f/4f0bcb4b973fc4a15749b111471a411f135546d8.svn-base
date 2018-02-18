@@ -1,0 +1,96 @@
+/**
+ * Feuille de traduction EN->PL
+ */
+define([
+],
+function (
+) {
+	return {
+		source: "en",
+		target: "pl",
+		LABEL_LOADINGSCREEN_LOADING: {
+			source: "Loading the game",
+			target: "Ladowania gry"
+		},
+		LABEL_LOGINSCREEN_LOGINTEXT: {
+			source: "Log in :",
+			target: "Zaloguj sie :"
+		},
+		LABEL_LOGINSCREEN_LOGINTEXTFIELD: {
+			source: "Account*",
+			target: "Konto*"
+		},
+		LABEL_LOGINSCREEN_PASSTEXTFIELD: {
+			source: "Password*",
+			target: "Haslo*"
+		},
+		LABEL_LOGINSCREEN_CONNECTBTN: {
+			source: "Connect",
+			target: "Polaczyc"
+		},
+		LABEL_LOGINSCREEN_TIP: {
+			source: "*If you don't have an account, it will be automatically created.",
+			target: "*Jesli nie masz jeszcze konta, zostanie utworzony automatycznie."
+		},
+		LABEL_MENU_PLAYBTN: {
+			source: "Play",
+			target: "Grac"
+		},
+		LABEL_MENU_HIGHSCOREBTN: {
+			source: "Highscore",
+			target: "Najlepszy wynik"
+		},
+		LABEL_MENU_OPTIONSBTN: {
+			source: "Options",
+			target: "Opcje"
+		},
+		LABEL_MENU_HELPBTN: {
+			source: "Help",
+			target: "Pomoc"
+		},
+		LABEL_MENU_ABOUTBTN: {
+			source: "About",
+			target: "o"
+		},
+		LABEL_POPUP_CLOSEBTN: {
+			source: "Close",
+			target: "Blisko"
+		},
+		LABEL_POPUP_ABOUT_TITLE: {
+			source: "About SokoNyan",
+			target: "o SokoNyan"
+		},
+		LABEL_POPUP_ABOUT_DESC: {
+			source: "SokoNyan has been released by<br />MILLIERE Dorian<br /> &<br /> PEREIRA-RAMOS Jordan<br />both student in Game Desgin & Programming<br /> at ISART Digital",
+			target: "SokoNyan zostala wydana przez<br />MILLIERE Dorian<br /> &<br /> PEREIRA-RAMOS Jordan<br />zarówno studentów w grze Game Desgin & Programming<br /> na ISART Digital"
+		},
+		LABEL_POPUP_OPTIONS_TITLE: {
+			source: "Options",
+			target: "Opcje"
+		},
+		LABEL_POPUP_OPTIONS_GLOBAL: {
+			source: "General",
+			target: "Ogolny"
+		},
+		LABEL_POPUP_OPTIONS_MUSIC: {
+			source: "Musics",
+			target: "Muzyczki"
+		},
+		LABEL_POPUP_OPTIONS_SFX: {
+			source: "Effects",
+			target: "Wplyw"
+		},
+		LABEL_POPUP_OPTIONS_VOLUME: {
+			source: "Volume",
+			target: "Objetosc"
+		},
+		LABEL_POPUP_OPTIONS_DESCTITLE: {
+			source: "Choose your language",
+			target: "Wybierz swoj jezyk"
+		},
+		LABEL_POPUP_LEVELSELECT_DESCTITLE: {
+			source: "Choose your level",
+			target: "Wybierz poziom"
+		}
+	};
+});

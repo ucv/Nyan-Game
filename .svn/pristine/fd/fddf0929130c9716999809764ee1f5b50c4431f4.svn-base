@@ -1,0 +1,24 @@
+/**
+ * Ecran de chargement du jeu
+ */
+define([
+],
+function (
+) {
+	var LoadScreen = function () {
+
+	}
+
+
+	/**
+	 * Affiche le contenu dans gameContainer
+	 */
+	LoadScreen.prototype.init = function () {
+		$("#gameContainer").append("<div class='flag blue'></div>");
+		$("#gameContainer").append("<div class='flag white'></div>");
+		$("#gameContainer").append("<div class='flag red'></div>");
+	}
+
+
+	return new LoadScreen();
+});

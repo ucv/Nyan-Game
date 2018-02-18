@@ -1,0 +1,43 @@
+/**
+ * Css de la page de connexion
+ */
+.login {
+	font-family:Fipps, sans-serif;
+	font-size: 1.3em;
+	position: absolute;
+	left: 460px;
+	top: 200px;
+	text-shadow: 1px 2px 4px #bbb;
+}
+
+
+.password {
+	font-family:Fipps, sans-serif;
+	font-size: 1.3em;
+	position: absolute;
+	left: 410px;
+	top: 340px;
+	text-shadow: 1px 2px 4px #bbb;
+}
+
+
+.loginBackground {
+	position: absolute;
+	height: 640px;
+	width: 1136px;
+	background-image: url(../assets/img/sprite/ui/loginBackground.png);
+}
+
+
+.textBoxLogin {
+	left: 460px;
+	top: 200px;
+	position: absolute;
+}
+
+
+.textBoxPassword {
+	left: 410px;
+	top: 340px;
+	position: absolute;
+}

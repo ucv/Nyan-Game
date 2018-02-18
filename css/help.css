@@ -1,0 +1,79 @@
+/**
+ * help css
+ */
+#Help {
+	position: absolute;
+    width: 1136px;
+    height: 640px;
+    z-index: 500;
+}
+
+
+#helpBackground {
+	position: absolute;
+    width: 1136px;
+    height: 640px;
+    background-size: 100%100%;
+}
+
+.helpText {
+	font-family:Fipps, sans-serif;
+	position: absolute;
+	text-align: center;
+	line-height: 30px;
+}
+
+#helpTitle0 {
+	font-size: 1.2em;
+	left: 150px;
+	top: 130px;
+}
+
+#helpTitle1 {
+	font-size: 1.2em;
+	left: 743px;
+	top: 130px;
+}
+
+#helpLittle0 {
+	font-size: 1.2em;
+	left: 270px;
+	top: 250px;
+}
+
+#helpLittle1 {
+	font-size: 1.2em;
+	left: 250px;
+	top: 385px;
+}
+
+#helpLittle2 {
+	font-size: 1.2em;
+	left: 260px;
+	top: 505px;
+}
+
+#helpLittle3 {
+	font-size: 1.2em;
+	left: 830px;
+	top: 285px;
+}
+
+#helpLittle4 {
+	font-size: 1.2em;
+	left: 850px;
+	top: 465px;
+}
+
+#helpButtonClose {
+	font-family:Fipps, sans-serif;
+	position: absolute;
+	text-align: center;
+	width: 230px;
+	height: 70px;
+	background-size: 100% 100%;
+	left: 700px;
+	top: 550px;
+	font-size: 1em;
+	padding-top: 6px;
+}

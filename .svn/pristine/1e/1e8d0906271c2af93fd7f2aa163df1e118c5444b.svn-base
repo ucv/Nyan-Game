@@ -1,0 +1,60 @@
+<?php
+// http://localhost/sokoban/request.php?isRequest=false&name=Teddyyu&password=1234569
+error_reporting(E_ALL);
+include("config.php");
+
+if (isset($_POST['name'])) $name = htmlspecialchars($_POST['name']);
+else $name = null;
+if (isset($_POST['password'])) $password = htmlspecialchars($_POST['password']);
+else $password = null;
+if (isset($_POST['isRequest'])) $isRequest = htmlspecialchars($_POST['isRequest']);
+else $isRequest = false;
+
+try {
+	$connexion = new PDO($source, $user, $motDePasse);
+	$requete = "SELECT * FROM users WHERE name='" . $name . "'";
+	$resultat = $connexion->query($requete);
+	$arr = array();
+	foreach ($resultat as $ligne)
+		array_push($arr, $ligne);
+} catch (PDOException $e) {
+
+}
+
+if (count($arr) == 0) {
+	try {
+		$connexion = new PDO($source, $user, $motDePasse);
+		$requete = "INSERT INTO  `sokoban`.`users` (
+		`id` ,
+		`name` ,
+		`password` ,
+		`date`
+		)
+		VALUES (
+		NULL ,  '" . $name . "',  '" . $password . "', 
+		CURRENT_TIMESTAMP
+		);";
+
+		$resultat = $connexion->query($requete);
+	} catch (PDOException $e) {
+
+	}
+	echo "created";
+	die();
+} else {
+	if ($arr[0]['password'] == $password) {
+		if (!$isRequest) {
+			echo "connected";
+			die();
+		}
+	} else {
+		echo "wrongpassword";
+		die();
+	}
+}
+
+
+
+
+
+?>

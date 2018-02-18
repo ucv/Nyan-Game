@@ -1,0 +1,31 @@
+/**
+ * Class About
+ */
+define([
+	"src/utils/assetsmanager/SpriteManager",
+	"src/utils/assetsmanager/SoundManager"
+],
+function (
+	SpriteManager,
+	SoundManager
+) {
+	var About = function () {
+
+	}
+
+
+	/**
+	 * Affiche le contenu dans popUp
+	 */
+	About.prototype.init = function (UIManager) {
+		$("#screenContainer").append("<div id='AboutScreen' class='popUp'></div>");
+
+		$("#screenContainer #AboutScreen").css("background-image", "url(" + SpriteManager.get("popUp").src + ")");
+		$("#screenContainer #AboutScreen").css( "background-size", "70%" );
+		$("#screenContainer #AboutScreen").css( "left", "170" );
+		$("#screenContainer #AboutScreen").css( "top", "160" );
+	}
+
+
+	return new About();
+});

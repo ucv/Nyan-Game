@@ -1,0 +1,29 @@
+/**
+ * Tout ce qui concerne le jeu
+ */
+
+#mapContainer {
+	position: absolute;
+	left: 238px;
+}
+
+#player {
+	position: absolute;
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+	z-index: 3;
+}
+
+.tile {
+	position: absolute;
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+	z-index: 1;
+}
+
+.box {
+	position: absolute;
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+	z-index: 3;
+}

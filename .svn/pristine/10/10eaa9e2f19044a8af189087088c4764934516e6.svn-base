@@ -1,0 +1,25 @@
+body {
+	background-color: white;
+}
+
+#gameContainer {
+	position: absolute;
+	top : 0px;
+	left : 0px;
+}
+
+.loadingBackground {
+	position: absolute;
+	height: 640px;
+	width: 1136px;
+	background-image: url(../assets/img/sprite/ui/loadingBackground.png);
+}
+
+.loadingBar {
+	position: absolute;
+	height: 87px;
+	width: 999px;
+	left: 75px;
+	top: 506px;
+	background-image: url(../assets/img/sprite/ui/loadingBar.png);
+}

@@ -1,0 +1,118 @@
+/**
+ * Class levelSelect
+ */
+define([
+	"jquery",
+	"jquery-ui",
+	"src/utils/assetsmanager/SpriteManager",
+	"src/utils/assetsmanager/SoundManager",
+	"src/utils/localization/txt",
+	"src/utils/Config"
+],
+function (
+	$,
+	ui,
+	SpriteManager,
+	SoundManager,
+	txt,
+	Config
+) {
+	var levelSelect = function () {
+
+	}
+
+
+	/**
+	 * Affiche le contenu dans popUp
+	 */
+	levelSelect.prototype.init = function (UIManager) {
+		$("#screenContainer").append("<div id='levelSelect' class='popUp'></div>");
+		$("#blackScreen").show();
+
+		$("#levelSelect").css("background-image", "url(" + SpriteManager.get("popUp").src + ")");
+		$("#levelSelect").css( "background-size", "70%" );
+		$("#levelSelect").css( "left", "170" );
+		$("#levelSelect").css( "top", "160" );
+
+		$("#levelSelect").append("<div class='buttonClose'>" + txt.get("LABEL_POPUP_CLOSEBTN") + "</div>");
+		$("#levelSelect .buttonClose").css("background-image", "url(" + SpriteManager.get("buttonLoginStatic").src + ")");
+
+		/**
+		 * Bouton de fermeture du popUp
+		 */
+		// Hover
+		$( "#levelSelect .buttonClose").hover(function() {
+			$( this ).css("background-image", "url(" + SpriteManager.get("buttonLoginSurvol").src + ")");
+			$("#levelSelect .buttonClose").css("background-repeat", "no-repeat");
+			SoundManager.play("buttonHover");
+		}, function() {
+			$( this ).css("background-image", "url(" + SpriteManager.get("buttonLoginStatic").src + ")");
+		});
+
+		// Active
+		$( "#levelSelect .buttonClose").mousedown(function() {
+
+			$("#levelSelect .buttonClose").css("background-image", "url(" + SpriteManager.get("buttonLoginPress").src + ")")
+										  .css("padding-top", 12);
+
+		});
+
+		$("#levelSelect .buttonClose").mouseup(function() {
+
+			$("#levelSelect .buttonClose").css("background-image", "url(" + SpriteManager.get("buttonLoginStatic").src + ")")
+										  .css("padding-top", 8);
+
+			$("#blackScreen").hide();
+			SoundManager.play("meow14");
+			UIManager.closeScreen("levelSelect", true);
+		});
+
+		$("#levelSelect").append("<div id='descTitleLevelSelect'>" + txt.get("LABEL_POPUP_LEVELSELECT_DESCTITLE") + "</div>");
+
+		/**
+		 * Bouton de selection de niveau
+		 */
+		$("#levelSelect").append("<div class='btnLevel'>1</div>");
+		$(".btnLevel").css("background-image", "url(" + SpriteManager.get("btnLevelStatic").src + ")");
+
+		$(".btnLevel").append("<div class='star'></div>");
+		$(".star").css("background-image", "url(" + SpriteManager.get("star").src + ")")
+				  .css("top","9px")
+				  .css("left","10px");
+
+		// Hover
+		$( "#levelSelect .btnLevel").hover(function() {
+			$( this ).css("background-image", "url(" + SpriteManager.get("btnLevelSurvol").src + ")");
+			$("#levelSelect .btnLevel").css("background-repeat", "no-repeat");
+				SoundManager.play("buttonHover");
+		}, function() {
+			$( this ).css("background-image", "url(" + SpriteManager.get("btnLevelStatic").src + ")");
+		});
+
+		// Active
+		$( "#levelSelect .btnLevel").mousedown(function() {
+
+			$("#levelSelect .btnLevel").css("background-image", "url(" + SpriteManager.get("btnLevelPress").src + ")")
+									   .css("padding-top", 5);
+		 	$(".star").css("top","14px")
+		});
+
+		$("#levelSelect .btnLevel").mouseup(function() {
+
+			$("#levelSelect .btnLevel").css("background-image", "url(" + SpriteManager.get("btnLevelStatic").src + ")")
+									   .css("padding-top", 1);
+			$(".star").css("top","9px")
+
+			SoundManager.play("meow14");
+		});
+
+		/**
+		 * Bouton de niveau non débloqué
+		 */
+		$("#levelSelect").append("<div class='btnLock'></div>");
+		$(".btnLock").css("background-image", "url(" + SpriteManager.get("btnLock").src + ")");
+	}
+
+	
+	return new levelSelect();
+});

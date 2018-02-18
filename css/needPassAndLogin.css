@@ -1,0 +1,22 @@
+/**
+ * CSS of popup "login and password fields not filled out"
+ */
+
+.NeedPasswordAndLoginText {
+    margin-top: 10px;
+}
+
+
+.NeedPasswordAndLoginTitle {
+    text-align: center;
+    padding-top: 1;
+    font-size: 1.3em;
+}
+
+
+.NeedPasswordAndLoginDesc {
+	text-align: center;
+	line-height: 150%;
+	font-size: 0.9em;
+    padding-top: 20;
+}

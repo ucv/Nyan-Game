@@ -1,0 +1,256 @@
+/**
+ * Class qui permet de charger les maps
+ */
+define([
+	"jquery",
+	"src/utils/Config",
+	"src/utils/assetsmanager/SpriteManager",
+	"src/utils/math/Vector2",
+	"src/game/game/box/Box",
+	"src/game/game/box/BoxManager",
+	"src/utils/localization/txt",
+	"assets/map/level1",
+	"assets/map/level2",
+	"assets/map/level3",
+	"assets/map/level4",
+	"assets/map/level5",
+	"assets/map/level6",
+	"assets/map/level7"
+],
+function (
+	$,
+	Config,
+	SpriteManager,
+	Vector2,
+	Box,
+	BoxManager,
+	txt,
+	level1,
+	level2,
+	level3,
+	level4,
+	level5,
+	level6,
+	level7
+) {
+	var MapManager = function () {
+		this.currentMap = [];
+		this.mapHistory = [];
+		this.cell = {
+			void: 0,
+			floor: 1,
+
+			floorRed: 1,
+			floorOrange: 2,
+			floorYellow: 3,
+			floorGreen: 4,
+			floorBlue: 5,
+			floorPurple: 6,
+
+			wall: 7,
+			goal: 8,
+
+			sideIntNO: 9,
+			sideIntNE: 10,
+			sideIntSO: 11,
+			sideIntSE: 12,
+
+			sideLineS: 13,
+			sideLineN: 14,
+			sideLineO: 15,
+			sideLineE: 16,
+
+			sideExtNO: 17,
+			sideExtNE: 18,
+			sideExtSO: 19,
+			sideExtSE: 20,
+
+			box: 21,
+			boxOnGoal: 22,
+			player: 23,
+			playerOnGoal: 24
+		}
+
+		this.floorColor = [
+			"floorRed",
+			"floorOrange",
+			"floorYellow",
+			"floorGreen",
+			"floorBlue",
+			"floorPurple"
+		];
+	}
+
+
+	MapManager.prototype.init = function (Player) {
+		this.Player = Player;
+	}
+
+
+	MapManager.prototype.update = function () {
+		$("#hudTimeText").text(Math.floor((Date.now() - this.levelStartDate) / 1000) + " s");
+		for (var i = 0; i < 3; i++) {
+			if (this.Player.eatPower > i) {
+				$("#specialLogo" + i).show();
+			} else {
+				$("#specialLogo" + i).hide();
+			}
+			if (this.Player.eatPower == 0) {
+				$("#specialLogo0").show();
+				$("#specialLogo0").text(txt.get("LABEL_HUD_EMPTYSKILL"));
+				$("#specialLogo0").css("margin-left", 45)
+								  .css("background-image", "");
+			}
+		};
+	}
+
+
+	/**
+	 * Charge une map et l'affiche sur le jeu
+	 */
+	MapManager.prototype.loadMap = function (name) {
+		this.currentMap = [];
+		this.actionCount = 0; // Nombre d'action effectué par le joueur (deplacement, undo, redo)
+		this.levelStartDate = Date.now();
+
+		var imageName = "";
+		var map = eval(name);
+		Config.mapSizeX = Math.sqrt(map.layers[0].data.length);
+		Config.mapSizeY = Math.sqrt(map.layers[0].data.length);
+
+		$("#gameContainer").append("<div id='mapContainer'></div>")
+
+		this.Player.eatPower = map.properties.eatPower || 0;
+		
+		for (var i = 0; i < map.layers[0].data.length; i++) {
+
+			if (map.layers[0].data[i] >= this.cell.floorRed ||
+				map.layers[0].data[i] <= this.cell.floorPurple) {
+				map.layers[0].data[i] == this.cell.floor;
+			}
+
+			this.currentMap.push(map.layers[0].data[i]);
+
+			for (cellName in this.cell){
+				if (this.cell[cellName] == map.layers[0].data[i]) {
+					imageName = cellName;
+				}
+			}
+
+			var floorImageName = this.floorColor[Math.floor(i / Config.mapSizeY) % this.floorColor.length];
+
+			switch (map.layers[0].data[i]) {
+				case this.cell.floorRed:
+				case this.cell.floorOrange:
+				case this.cell.floorYellow:
+				case this.cell.floorGreen:
+				case this.cell.floorBlue:
+				case this.cell.floorPurple:
+				case this.cell.floor:
+					imageName = floorImageName;
+					break;
+				case this.cell.box:
+					imageName = floorImageName;
+					new Box((i % Config.mapSizeX), Math.floor(i / Config.mapSizeY), false, this, this.Player);
+					break;
+				case this.cell.boxOnGoal:
+					imageName = "goal";
+					new Box((i % Config.mapSizeX), Math.floor(i / Config.mapSizeY), true, this, this.Player);
+					break;
+				case this.cell.playerOnGoal:
+					imageName = "goal";
+					break;
+				case this.cell.player:
+					imageName = floorImageName;
+					break;
+			}
+			
+			if (map.layers[0].data[i] == this.cell.playerOnGoal ||
+				map.layers[0].data[i] == this.cell.player) {
+				$("#mapContainer").append("<div id='player'></div>")
+					$("#player").css("background-image", "url(" + SpriteManager.get("player").src + ")")
+								.css("width", 141 * Math.max(Config.mapWidth, Config.mapHeight) / 110)
+								.css("height", 87 * Math.max(Config.mapWidth, Config.mapHeight) / 110);
+			}
+
+			$('#mapContainer').append('<div id="tile' + i + '" class="' + imageName + ' tile"></div>');
+			$('#tile' + i).css("background-image", "url(" + SpriteManager.get(imageName).src + ")");
+			$('#tile' + i).css("left", Config.mapWidth * (i % Config.mapSizeX))
+						  .css("top", Config.mapHeight * Math.floor(i / Config.mapSizeY))
+						  .css("width", Config.mapWidth)
+						  .css("height", Config.mapHeight)
+						  .data("floorColor", floorImageName);
+
+
+			var mouseUpEvent = (function (MapManager, i, Player) {
+				return function () {
+					var clickX = i % Config.mapSizeX;
+					var clickY = Math.floor(i / Config.mapSizeY);
+					var nextDir = Player.XYToDir(clickX, clickY);
+					var moved = false;
+					if (nextDir != false) {
+						moved = Player.move(nextDir);
+					} else {
+						moved = Player.move(clickX, clickY);
+					}
+					if (moved) MapManager.actionCount++;
+				}
+			})(this, i, this.Player);
+
+			$('#tile' + i).mouseup(mouseUpEvent);
+
+			$('#tile' + i).hide();
+			setTimeout((function (id) {
+				return function () {
+					$('#tile' + id).fadeIn(400);
+				};
+			})(i), Config.fadeInMin + Math.random() * (Config.fadeInMax - Config.fadeInMin));
+		}
+	}
+
+
+	MapManager.prototype.actionIncrement = function () {
+		this.actionCount++;
+		$("#hudActionNumberText").text(this.actionCount);
+	}
+
+
+	/**
+	 * Détruit la map actuel
+	 */
+	MapManager.prototype.removeMap = function () {
+		for (var i = 0; i < this.currentMap.length; i++) {
+			setTimeout((function (id) {
+				return function () {
+					$('#tile' + id).fadeOut(400, function () {
+						$('#tile' + id).remove();
+					});
+				};
+			})(i), Config.fadeInMin + Math.random() * (Config.fadeInMax - Config.fadeInMin));
+		}
+		BoxManager.destroyAll();
+		this.currentMap = [];
+	}
+
+
+	/**
+	  * Return la valeur d'une case
+	  * @x Abcisse de la case
+	  * @y Ordonnée de la case
+	  */
+	MapManager.prototype.getCellValue = function (x, y) {
+		if (x < 0 || x > Config.mapSizeX - 1 || y < 0 || y > Config.mapSizeY - 1) return this.cell.wall;
+		return this.currentMap[(y % Config.mapSizeX) * Config.mapSizeX + x];
+	}
+
+
+	/**
+	 * Retourne l'id de la case ce trouvant à la position x et y
+	 */
+	MapManager.prototype.getCellId = function (x, y) {
+		return (y % Config.mapSizeX) * Config.mapSizeX + x;
+	}
+	
+
+	return new MapManager();
+});

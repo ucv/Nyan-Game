@@ -1,0 +1,114 @@
+/*
+* GameLoop du jeu. Stock les fonctions de base du jeu (Pause, resume)
+*/
+define([
+	"jquery",
+	"underscore",
+	"src/utils/debug/Debug",
+	"src/utils/debug/Stats",
+	"src/utils/game/Time",
+	"src/utils/display/GameContainer",
+	"src/utils/assetsmanager/AnimationManager",
+	"src/utils/loader/LoaderManager",
+	"src/game/controller/Controller",
+	"src/game/controller/Keyboard",
+	"src/game/controller/GamePad",
+	"src/game/game/Player",
+	"src/game/ui/UIManager",
+	"src/game/game/MapManager",
+	"src/game/game/crate/CrateManager"
+],
+function (
+	$,
+	_,
+	Debug,
+	Stats,
+	Time,
+	GameContainer,
+	AnimationManager,
+	LoaderManager,
+	Controller,
+	Keyboard,
+	GamePad,
+	Player,
+	UIManager,
+	MapManager,
+	CrateManager
+) {
+	var GameManager = function () {
+		
+	}
+
+
+	/**
+	 * Initialisation du jeu.
+	 */
+	GameManager.prototype.init = function () {
+		Debug.success("GameManager initialised.");
+		Stats.init();
+		GameContainer.init();
+		UIManager.init();
+		Controller.init();
+		Keyboard.init();
+		GamePad.init();
+		Time.init();
+		UIManager.addScreen("LoadScreen");
+		//MapManager.loadMap("level1");
+		Player.init();
+		gameloop();
+	}
+
+
+	/**
+	 * Execute toutes les updates des managers
+	 */
+	function update () {
+		GamePad.update();
+		AnimationManager.update();
+		LoaderManager.update();
+		Player.update();
+		CrateManager.update();
+	}
+
+
+	/**
+	 * Execute toutes les collisions
+	 */
+	function collider () {
+
+	}
+
+
+	/**
+	 * Met à jours les animations
+	 */
+	function animate () {
+
+	}
+
+
+	/**
+	 * Permet d'updater les objets
+	 */
+	function render () {
+		
+	}
+
+
+	/**
+	 * Gameloop principal du jeu
+	 */
+	function gameloop () {
+		Stats.begin();
+		Time.updatedt();
+		update();
+		collider();
+		animate();
+		render();
+		Stats.end();
+		window.requestAnimationFrame(gameloop);
+	}
+
+
+	return new GameManager();
+});

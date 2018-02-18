@@ -1,0 +1,20 @@
+/**
+ * Caisse du sokoban
+ */
+define([
+	"jquery",
+	"src/game/game/crate/CrateManager"
+],
+function (
+	$,
+	CrateManager
+) {
+	var Crate = function (x, y) {
+		CrateManager.list.push(this);
+		this.id = Math.floor(Math.random() * 10000000);
+		$("#mapcontainer").append("<div id='" + this.id + " class='crate'></div>");
+	}
+
+
+	return Crate;
+});

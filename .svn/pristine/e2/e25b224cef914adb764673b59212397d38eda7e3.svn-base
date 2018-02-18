@@ -1,0 +1,54 @@
+/**
+ * Tout ce qui concerne les paramètres du comptes et les requêtes AJAX.
+ */
+define([
+	"src/game/server/ServerConfig"
+],
+function (
+	ServerConfig
+) {
+	var Account = function () {
+		this.name = "";
+		this.password = "";
+		this.progress = {};
+	}
+
+
+	/*
+	 * Permet de ce connecter ou créer un compte.
+	 * @name Nom de compte
+	 * @password Mot de passe du compte
+	 * Return "created" - Compte créer
+	 *		  "connected" - Connexion réussi
+	 *		  "wrongpassword" - Mot de passe incorrect ou compte déjà existant
+	 */
+	Account.prototype.connect = function (name, password) {
+		this.name = name;
+		this.password = password;
+		var result;
+		$.ajaxSetup({async:false});
+		$.post(ServerConfig.host + "request.php", {
+			name: this.name,
+			password: this.password
+		}, function (data) {
+			result = data;
+		});
+		$.ajaxSetup({async:true});
+		return result;
+	}
+
+
+	/*
+	 * Stock la progression du joueur dans l'attribut this.progress (score à chaque niveau, niveau débloqué, etc.)
+	 */
+	Account.prototype.getProgress = function () {
+		$.post(ServerConfig.host + "request.php", {
+			isRequest: true
+		}, function (data) {
+			console.log(data);
+		});
+	}
+
+
+	return new Account();
+});

@@ -1,0 +1,65 @@
+/**
+ * Load tout les sons du jeu
+ */
+define([
+	"underscore",
+	"howler",
+	"src/utils/debug/Debug",
+	"src/utils/assetsmanager/SoundManager"
+],
+function (
+	_,
+	howler,
+	Debug,
+	SoundManager
+) {
+	var SoundLoader = function () {
+		this.baseFolder = "assets/sound/";
+
+		this.list = [
+			{
+				name: "mgame",
+				path: this.baseFolder + "music/M-GameBG.ogg",
+				volume: 100,
+				type: "music"
+			},
+			{
+				name: "thunder",
+				path: this.baseFolder + "sfx/Thunder1.ogg",
+				volume: 100,
+				type: "sfx"
+			}
+		];
+
+		this.totalToLoad = this.list.length;
+		this.currentLoaded = 0;
+	}
+
+
+	/**
+	 * Charge tous les sons, puis les stock dans le soundManager une fois chargé
+	 */
+	SoundLoader.prototype.init = function () {
+		Debug.success("SoundLoader initialised.");
+		SoundManager.list = _.clone(this.list);
+		for (var i = 0; i < this.list.length; i ++) {
+			this.list[i].instance = new howler.Howl({
+				urls: [this.list[i].path],
+				onload: function () {
+					this.currentLoaded++;
+				}.bind(this)
+			});
+		}
+	}
+
+
+	/**
+	 * Return la progression du chargement des sons (0 à 1)
+	 */
+	SoundLoader.prototype.getProgress = function () {
+		return this.currentLoaded / this.totalToLoad;
+	}
+
+
+	return new SoundLoader();
+});

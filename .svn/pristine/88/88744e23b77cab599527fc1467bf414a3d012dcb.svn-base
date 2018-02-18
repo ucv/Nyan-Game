@@ -1,0 +1,172 @@
+/**
+ * Class levelSelect
+ */
+define([
+	"jquery",
+	"jquery-ui",
+	"src/utils/assetsmanager/SpriteManager",
+	"src/utils/assetsmanager/SoundManager",
+	"src/utils/localization/txt",
+	"src/utils/Config",
+	"src/game/game/Account"
+],
+function (
+	$,
+	ui,
+	SpriteManager,
+	SoundManager,
+	txt,
+	Config,
+	Account
+) {
+	var levelSelect = function () {
+
+	}
+
+
+	/**
+	 * Affiche le contenu dans popUp
+	 */
+	levelSelect.prototype.init = function (UIManager) {
+		$("#screenContainer").append("<div id='levelSelect' class='popUp'></div>");
+		$("#blackScreen").show();
+
+		$("#screenContainer #levelSelect").css("background-image", "url(" + SpriteManager.get("popUp").src + ")")
+									  .css("width", 786.8)
+									  .css("height", 444,5)
+									  .css( "left", "170" )
+									  .css( "top", "160" );
+
+		$("#levelSelect").append("<div class='buttonClose'>" + txt.get("LABEL_POPUP_CLOSEBTN") + "</div>");
+		$("#levelSelect .buttonClose").css("background-image", "url(" + SpriteManager.get("buttonLoginStatic").src + ")");
+
+		/**
+		 * Bouton de fermeture du popUp
+		 */
+		// Hover
+		$( "#levelSelect .buttonClose").hover(function() {
+			$( this ).css("background-image", "url(" + SpriteManager.get("buttonLoginSurvol").src + ")");
+			$("#levelSelect .buttonClose").css("background-repeat", "no-repeat");
+			SoundManager.play("buttonHover");
+		}, function() {
+			$( this ).css("background-image", "url(" + SpriteManager.get("buttonLoginStatic").src + ")");
+		});
+
+		// Active
+		$( "#levelSelect .buttonClose").mousedown(function() {
+			$("#levelSelect .buttonClose").css("background-image", "url(" + SpriteManager.get("buttonLoginPress").src + ")")
+										  .css("padding-top", 12);
+		});
+
+		$("#levelSelect .buttonClose").mouseup(function() {
+			$("#levelSelect .buttonClose").css("background-image", "url(" + SpriteManager.get("buttonLoginStatic").src + ")")
+										  .css("padding-top", 8);
+			$("#blackScreen").hide();
+			SoundManager.play("meow14");
+			UIManager.closeScreen("levelSelect", true);
+		});
+
+		$("#levelSelect").append("<div id='descTitleLevelSelect'>" + txt.get("LABEL_POPUP_LEVELSELECT_DESCTITLE") + "</div>");
+
+		/**
+		 * Bouton de selection de niveau
+		 */
+		var isUnlocked = false;
+		var className = false;
+		var starName = null;
+		var btnStatic = null;
+		var btnsurvol = null;
+		var btnPress = null;
+		var mouseUpSound = null;
+		var score = null;
+		
+		for (var i = 1; i < 16; i++) {
+			isUnlocked = Account.progress.level[i - 1].unlocked;
+			if (isUnlocked) {
+				className = "btnLevel";
+				btnStatic = "btnLevelStatic";
+				btnSurvol = "btnLevelSurvol";
+				btnPress = "btnLevelPress";
+				mouseUpSound = "meow14";
+			} else {
+				className = "btnLock";
+				btnStatic = "btnLock";
+				btnSurvol = "btnLock";
+				btnPress = "btnLock";
+				mouseUpSound = "buttonForbidden";
+			}
+
+			// Button append
+			if (isUnlocked){
+				$("#levelSelect").append("<div id='btnLevel" + i + "' class='btn " + className + "'><span>" + i + "</span></div>");
+			} else {
+				$("#levelSelect").append("<div id='btnLevel" + i + "' class='btn " + className + "'></div>");
+			}
+			$("#btnLevel" + i).css("margin-left", (i - 1) % 5 * 100);
+			$("#btnLevel" + i).css("margin-top", Math.floor((i - 1) / 5) * 70);
+			$("#btnLevel" + i).css("background-image", "url(" + SpriteManager.get(btnStatic).src + ")");
+
+			// Star append
+			if (isUnlocked) {
+				score = Account.progress.level[i - 1].score;
+				for (var j = 1; j < 3; j++) {
+					if (score >= j) {
+						starName = "star";
+					} else {
+						starName = "emptyStar";
+					}
+					$("#btnLevel" + i).append("<div id='star" + i + j + "' class='star'></div>");
+					$("#star" + i + j).css("background-image", "url(" + SpriteManager.get(starName).src + ")")
+									  .css("top", 5)
+									  .css("left", j * 17 - 5);
+				};
+			}
+
+			// Hover
+			$( "#btnLevel" + i).hover(
+			(function(btnSurvol) {
+				return function () {
+					$( this ).css("background-image", "url(" + SpriteManager.get(btnSurvol).src + ")");
+					$("#btnLevel" + i).css("background-repeat", "no-repeat");
+					SoundManager.play("buttonHover");
+				}
+			})(btnSurvol),
+			(function(btnStatic) {
+				return function () {
+					$( this ).css("background-image", "url(" + SpriteManager.get(btnStatic).src + ")");
+				}
+			})(btnStatic));
+
+			// Active
+			$( "#btnLevel" + i).mousedown((function(id, btnPress, isUnlocked) {
+				return function () {
+					$(this).css("background-image", "url(" + SpriteManager.get(btnPress).src + ")")
+					if (isUnlocked) {
+						$(this).css("padding-top", 5);
+					}
+				 	$("#star" + id + 1).css("top", "10px")
+				 	$("#star" + id + 2).css("top", "10px")
+				}
+			})(i, btnPress, isUnlocked));
+
+			$("#btnLevel" + i).mouseup((function(id, btnStatic, mouseUpSound) {
+				return function () {
+					$(this).css("background-image", "url(" + SpriteManager.get(btnStatic).src + ")")
+											   .css("padding-top", 0);
+					$("#star" + id + 1).css("top", "5px")
+					$("#star" + id + 2).css("top", "5px")
+					SoundManager.play(mouseUpSound);
+				}
+			})(i, btnStatic, mouseUpSound));
+		};
+
+		/**
+		 * Bouton de niveau non débloqué
+		 */
+		// $("#levelSelect").append("<div class='btnLock'></div>");
+		// $(".btnLock").css("background-image", "url(" + SpriteManager.get("btnLock").src + ")");
+	}
+
+	
+	return new levelSelect();
+});

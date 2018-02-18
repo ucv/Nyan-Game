@@ -1,0 +1,88 @@
+/**
+ * Feuille de traduction EN->FR
+ */
+define([
+],
+function (
+) {
+	return {
+		source: "en",
+		target: "fr",
+		LABEL_LOADINGSCREEN_LOADING: {
+			source: "Loading the game",
+			target: "Chargement du jeu"
+		},
+		LABEL_LOGINSCREEN_LOGINTEXT: {
+			source: "Log in :",
+			target: "Connexion :"
+		},
+		LABEL_LOGINSCREEN_LOGINTEXTFIELD: {
+			source: "Account*",
+			target: "Compte*"
+		},
+		LABEL_LOGINSCREEN_PASSTEXTFIELD: {
+			source: "Password*",
+			target: "Mot de passe*"
+		},
+		LABEL_LOGINSCREEN_CONNECTBTN: {
+			source: "Connect",
+			target: "Connexion"
+		},
+		LABEL_LOGINSCREEN_TIP: {
+			source: "*If you d'ont have an account, he will be automatically created.",
+			target: "*Si vous n'avez pas encore de compte, il sera crée automatiquement."
+		},
+		LABEL_MENU_PLAYBTN: {
+			source: "Play",
+			target: "Jouer"
+		},
+		LABEL_MENU_HIGHSCOREBTN: {
+			source: "Highscore",
+			target: "Meilleurs scores"
+		},
+		LABEL_MENU_OPTIONSBTN: {
+			source: "Options",
+			target: "Options"
+		},
+		LABEL_MENU_HELPBTN: {
+			source: "Help",
+			target: "Aide"
+		},
+		LABEL_MENU_ABOUTBTN: {
+			source: "About",
+			target: "A propos"
+		},
+		LABEL_POPUP_CLOSEBTN: {
+			source: "Close",
+			target: "Fermer"
+		},
+		LABEL_POPUP_ABOUT_TITLE: {
+			source: "About SokoNyan",
+			target: "A propos de SokoNyan"
+		},
+		LABEL_POPUP_ABOUT_DESC: {
+			source: "SokoNyan has been released by<br />MILLIERE Dorian<br /> &<br /> PEREIRA-RAMOS Jordan<br />both student in Game Desgin & Programming<br /> at ISART Digital",
+			target: "SokoNyan a été crée par<br />MILLIERE Dorian<br /> &<br /> PEREIRA-RAMOS Jordan<br />deux étudiant en Game design & Programming <br /> à ISART Digital"
+		},
+		LABEL_POPUP_OPTIONS_TITLE: {
+			source: "Options",
+			target: "Options"
+		},
+		LABEL_POPUP_OPTIONS_GLOBAL: {
+			source: "General",
+			target: "Général"
+		},
+		LABEL_POPUP_OPTIONS_MUSIC: {
+			source: "Musics",
+			target: "Musique"
+		},
+		LABEL_POPUP_OPTIONS_SFX: {
+			source: "Effects",
+			target: "Effets"
+		},
+		LABEL_POPUP_OPTIONS_VOLUME: {
+			source: "Volume",
+			target: "Volume"
+		}
+	};
+});

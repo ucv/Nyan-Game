@@ -1,0 +1,173 @@
+/**
+* Load toutes les images et differents spritesheet du jeu
+*/
+define([
+	"underscore",
+	"src/utils/debug/Debug",
+	"src/utils/assetsmanager/SpriteManager"
+],
+function (
+	_,
+	Debug,
+	SpriteManager
+) {
+	var SpriteLoader = function () {
+		this.baseFolder = "assets/img/"
+		this.list = [
+			{
+				name: "player",
+				path: this.baseFolder + "sprite/game/player.png"
+			},
+			{
+				name: "box",
+				path: this.baseFolder + "sprite/game/box.png"
+			},
+			{
+				name: "boxOnGoal",
+				path: this.baseFolder + "sprite/game/boxOnGoal.png"
+			},
+			{
+				name: "goal",
+				path: this.baseFolder + "sprite/game/goal.png"
+			},
+			{
+				name: "floor",
+				path: this.baseFolder + "sprite/game/floor.png"
+			},
+			{
+				name: "playerStart",
+				path: this.baseFolder + "sprite/game/playerStart.png"
+			},
+			{
+				name: "wall",
+				path: this.baseFolder + "sprite/game/wall.png"
+			},
+			{
+				name: "buttonLoginStatic",
+				path: this.baseFolder + "sprite/ui/loginScreen/buttonStatic.png"
+			},
+			{
+				name: "buttonLoginSurvol",
+				path: this.baseFolder + "sprite/ui/loginScreen/buttonSurvol.png"
+			},
+			{
+				name: "buttonLoginPress",
+				path: this.baseFolder + "sprite/ui/loginScreen/buttonPress.png"
+			},
+			{
+				name: "buttonMenuPress",
+				path: this.baseFolder + "sprite/ui/menuScreen/buttonPress.png"
+			},
+			{
+				name: "buttonMenuSurvol",
+				path: this.baseFolder + "sprite/ui/menuScreen/buttonSurvol.png"
+			},
+				{
+				name: "buttonMenuStatic",
+				path: this.baseFolder + "sprite/ui/menuScreen/buttonStatic.png"
+			},
+			{
+				name: "loadingBackground",
+				path: this.baseFolder + "sprite/ui/loadingScreen/Background.png"
+			},
+			{
+				name: "loadingBar",
+				path: this.baseFolder + "sprite/ui/loadingScreen/loadingBar.png"
+			},
+			{
+				name: "loadingCat",
+				path: this.baseFolder + "sprite/ui/loadingScreen/loadingCat.gif"
+			},
+			{
+				name: "popUp",
+				path: this.baseFolder + "sprite/ui/popUp.png"
+			},
+			{
+				name: "englishFlag",
+				path: this.baseFolder + "sprite/ui/englishFlag.png"
+			},
+			{
+				name: "spanishFlag",
+				path: this.baseFolder + "sprite/ui/spanishFlag.png"
+			},
+			{
+				name: "frenchFlag",
+				path: this.baseFolder + "sprite/ui/frenchFlag.png"
+			},
+			{
+				name: "germanFlag",
+				path: this.baseFolder + "sprite/ui/germanFlag.png"
+			},
+			{
+				name: "frenchFlagSurvol",
+				path: this.baseFolder + "sprite/ui/frenchFlagSurvol.png"
+			},
+			{
+				name: "englishFlagSurvol",
+				path: this.baseFolder + "sprite/ui/englishFlagSurvol.png"
+			},
+			{
+				name: "spanishFlagSurvol",
+				path: this.baseFolder + "sprite/ui/spanishFlagSurvol.png"
+			},
+			{
+				name: "germanFlagSurvol",
+				path: this.baseFolder + "sprite/ui/germanFlagSurvol.png"
+			},
+			{
+				name: "btnLevelStatic",
+				path: this.baseFolder + "sprite/ui/levelSelect/btnLevelStatic.png"
+			},
+			{
+				name: "btnLevelSurvol",
+				path: this.baseFolder + "sprite/ui/levelSelect/btnLevelSurvol.png"
+			},
+			{
+				name: "btnLevelPress",
+				path: this.baseFolder + "sprite/ui/levelSelect/btnLevelPress.png"
+			},
+			{
+				name: "star",
+				path: this.baseFolder + "sprite/ui/levelSelect/star.png"
+			},
+			{
+				name: "emptyStar",
+				path: this.baseFolder + "sprite/ui/levelSelect/emptyStar.png"
+			},
+			{
+				name: "btnLock",
+				path: this.baseFolder + "sprite/ui/levelSelect/btnLock.png"
+			}
+		]
+
+		this.totalToLoad = this.list.length;
+		this.currentLoaded = 0;
+	}
+
+
+	/**
+	 * Charge toutes les images puis les stock dans spriteManager
+	 */
+	SpriteLoader.prototype.init = function () {
+		Debug.success("SpriteLoader initialised.");
+		for (var i = 0; i < this.list.length; i++) {
+			var image = new Image();
+			image.src = this.list[i].path;
+			image.onload = function () {
+				this.currentLoaded++;
+			}.bind(this);
+			SpriteManager.push(this.list[i].name, image);
+		}
+	}
+
+
+	/**
+	 * Return la progression du chargement des sons (0 à 1)
+	 */
+	SpriteLoader.prototype.getProgress = function () {
+		return this.currentLoaded / this.totalToLoad;
+	}
+
+
+	return new SpriteLoader();
+});

@@ -1,0 +1,20 @@
+/**
+ * Class de Login
+ */
+define([
+	"jquery",
+	"underscore",
+	"howler"
+],
+function (
+	$,
+	_,
+	howler
+) {
+	var Login = function () {
+
+	}
+
+
+	return Login;
+});

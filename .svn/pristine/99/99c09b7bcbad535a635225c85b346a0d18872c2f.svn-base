@@ -1,0 +1,121 @@
+/**
+* Load toutes les images et differents spritesheet du jeu
+*/
+define([
+	"underscore",
+	"src/utils/debug/Debug",
+	"src/utils/assetsmanager/SpriteManager"
+],
+function (
+	_,
+	Debug,
+	SpriteManager
+) {
+	var SpriteLoader = function () {
+		this.baseFolder = "assets/img/"
+		this.list = [
+			{
+				name: "player",
+				path: this.baseFolder + "spritesheet/player.png"
+			},
+			{
+				name: "chrome",
+				path: this.baseFolder + "sprite/compatible_chrome.gif"
+			},
+			{
+				name: "ie",
+				path: this.baseFolder + "sprite/compatible_ie.gif"
+			},
+			{
+				name: "firefox",
+				path: this.baseFolder + "sprite/compatible_firefox.gif"
+			},
+			{
+				name: "caisse",
+				path: this.baseFolder + "sprite/game/caisse.png"
+			},
+			{
+				name: "emplacement",
+				path: this.baseFolder + "sprite/game/emplacement.png"
+			},
+			{
+				name: "herbe",
+				path: this.baseFolder + "sprite/game/herbe.png"
+			},
+			{
+				name: "playerStart",
+				path: this.baseFolder + "sprite/game/playerStart.png"
+			},
+			{
+				name: "roche",
+				path: this.baseFolder + "sprite/game/roche.png"
+			},
+			{
+				name: "buttonLoginStatic",
+				path: this.baseFolder + "sprite/ui/loginScreen/buttonStatic.png"
+			},
+			{
+				name: "buttonLoginSurvol",
+				path: this.baseFolder + "sprite/ui/loginScreen/buttonSurvol.png"
+			},
+			{
+				name: "buttonLoginPress",
+				path: this.baseFolder + "sprite/ui/loginScreen/buttonPress.png"
+			},
+			{
+				name: "buttonMenuPress",
+				path: this.baseFolder + "sprite/ui/menuScreen/buttonPress.png"
+			},
+			{
+				name: "buttonMenuSurvol",
+				path: this.baseFolder + "sprite/ui/menuScreen/buttonSurvol.png"
+			},
+				{
+				name: "buttonMenuStatic",
+				path: this.baseFolder + "sprite/ui/menuScreen/buttonStatic.png"
+			},
+			{
+				name: "loadingBackground",
+				path: this.baseFolder + "sprite/ui/loadingScreen/Background.png"
+			},
+			{
+				name: "loadingBar",
+				path: this.baseFolder + "sprite/ui/loadingScreen/loadingBar.png"
+			},
+				{
+				name: "loadingCat",
+				path: this.baseFolder + "sprite/ui/loadingScreen/loadingCat.gif"
+			}
+		]
+
+		this.totalToLoad = this.list.length;
+		this.currentLoaded = 0;
+	}
+
+
+	/**
+	 * Charge toutes les images puis les stock dans spriteManager
+	 */
+	SpriteLoader.prototype.init = function () {
+		Debug.success("SpriteLoader initialised.");
+		for (var i = 0; i < this.list.length; i++) {
+			var image = new Image();
+			image.src = this.list[i].path;
+			image.onload = function () {
+				this.currentLoaded++;
+			}.bind(this);
+			SpriteManager.push(this.list[i].name, image);
+		}
+	}
+
+
+	/**
+	 * Return la progression du chargement des sons (0 à 1)
+	 */
+	SpriteLoader.prototype.getProgress = function () {
+		return this.currentLoaded / this.totalToLoad;
+	}
+
+
+	return new SpriteLoader();
+});

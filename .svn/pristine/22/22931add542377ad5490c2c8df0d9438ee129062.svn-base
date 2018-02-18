@@ -1,0 +1,22 @@
+/**
+ * Ecran de Menu
+ */
+define([
+],
+function (
+) {
+	var Menu = function () {
+
+	}
+
+
+	/**
+	 * Affiche le contenu dans gameContainer
+	 */
+	Menu.prototype.init = function () {
+		$("#screenContainer").append("<div class='menuBackground'></div>");
+	}
+
+
+	return new Menu();
+});

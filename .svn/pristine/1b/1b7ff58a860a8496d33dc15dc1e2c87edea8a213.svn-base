@@ -1,0 +1,14 @@
+/*
+ * Configuration du serveur
+ */
+define([
+],
+function (
+) {
+	var ServerConfig = function () {
+		
+	}
+
+
+	return new ServerConfig();
+});

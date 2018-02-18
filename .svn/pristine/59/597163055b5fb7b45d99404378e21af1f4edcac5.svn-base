@@ -1,0 +1,5 @@
+<?php
+	$source = "mysql:host=localhost;dbname=sokoban";
+	$user = "root";
+	$motDePasse = "";
+?>

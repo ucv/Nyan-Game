@@ -1,0 +1,135 @@
+/**
+ * Tout ce qui concerne le jeu
+ */
+
+#mapContainer {
+	position: absolute;
+	left: 238px;
+	top: -16px;
+}
+
+#player {
+	position: absolute;
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+	z-index: 3;
+}
+
+.tile {
+	position: absolute;
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+	z-index: 1;
+}
+
+.box {
+	position: absolute;
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+	z-index: 3;
+}
+
+/**
+ * css du hud
+ */
+
+#hudSpecialText {
+    position: absolute;
+    text-align: center;
+	font-family:Fipps, sans-serif;
+    font-size: 1em;
+    left: 65px;
+    top: 170px;
+}
+.hudSpecialLogo {
+    position: absolute;
+    font-family:Fipps, sans-serif;
+    width: 45px;
+    height: 45px;
+    top: 220px;
+    background-size: 100% 100%;
+}
+
+
+#hudTimeText {
+    position: absolute;
+    font-family:Fipps, sans-serif;
+    font-size: 1.2em;
+    top: 410px;
+    left: 115px;
+}
+
+#hudActionTitleText {
+    position: absolute;
+    font-family:Fipps, sans-serif;
+    font-size: 1em;
+    top: 269px;
+    left: 79px;
+}
+#hudActionNumberText {
+    position: absolute;
+    font-family:Fipps, sans-serif;
+    font-size: 1.2em;
+    top: 305px;
+    left: 127px;
+}
+
+#hudParTitleText {
+    position: absolute;
+    font-family:Fipps, sans-serif;
+    font-size: 1.1em;
+    top: 357px;
+    left: 78px;
+}
+#hudParNumberText {
+    position: absolute;
+    font-family:Fipps, sans-serif;
+    font-size: 1.2em;
+    top: 355px;
+    left: 153px;
+}
+
+#menuContainer .buttonMenu {
+	position: absolute;
+	left: 873px;
+	height: 59.4px;
+    width: 78.3px;
+    background-size: 100% 100%;
+    font-size: 0.8em;
+}
+
+#menuContainer #OptionsBtn {
+    top: 260px;
+    left: 967px;
+    cursor: pointer;
+}
+
+#menuContainer #HelpBtn {
+    top: 260px;
+    left: 1050px;
+    cursor: pointer;
+}
+
+#menuContainer #MenuBtn {
+    top: 260px;
+    left: 885px;
+    cursor: pointer;
+}
+
+#menuContainer #ResetBtn {
+    top: 325px;
+    left: 1050px;
+    cursor: pointer;
+}
+
+#menuContainer #UndoBtn {
+    top: 325px;
+    left: 885px;
+    cursor: pointer;
+}
+
+#menuContainer #RedoBtn {
+    top: 325px;
+    left: 967px;
+    cursor: pointer;
+}
